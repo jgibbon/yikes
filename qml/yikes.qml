@@ -42,5 +42,10 @@ ApplicationWindow
     YIapi {
         id: pythonAPI
     }
+    Keys.onPressed: {
+        if (event.key === 17825825) { //xperia x shutter
+            api.shutter();
+        }
+    }
 }
 
