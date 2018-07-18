@@ -2,6 +2,7 @@
 import logging
 import sys, os
 import subprocess
+import pyotherside
 from time import sleep, perf_counter
 
 # logging.basicConfig(level=logging.DEBUG)
@@ -13,22 +14,29 @@ from Yi4kAPI import *
 
 def notificationCB(result):
     print('notificationCB', result);
-    # pyotherside.send("notification", result)
-
+    pyotherside.send("notification", result)
 
 camera= YiAPI()
 
 # wrap camera.cmd to use pyotherside methods later
 def cmd(commandName, arg=None):
     result= camera.cmd(getattr(Yi4kAPI, commandName), arg)
-    print('wrapped response', commandName, result)
-    # pyotherside.send("callback", result)
-    # pyotherside.send("callback%s" % str(commandName), result)
-    return result
+    if result == -99999: #disconnected
+        pyotherside.send("disconnected")
+        return None
+    else:
+        print('wrapped response', commandName, result)
+        pyotherside.send("callback", commandName, result)
+        pyotherside.send("callback_%s" % str(commandName), commandName, result)
+        return result
+
+def getStreamURL():
+    pyotherside.send("streamurl", camera.rtsp)
+    return camera.rtsp
 
 # set up callbacks
 for event in ['start_video_record', 'video_record_complete', 'start_photo_capture', 'photo_taken', 'vf_start', 'vf_stop', 'enter_album', 'exit_album', 'battery', 'battery_status', 'adapter', 'adapter_status', 'sdcard_format_done', 'setting_changed']:
-    camera.setCB('event_'+event, notificationCB)
+    camera.setCB(event, notificationCB)
 
 
 
@@ -40,13 +48,13 @@ for event in ['start_video_record', 'video_record_complete', 'start_photo_captur
 # print('capturePhoto direct response: %s' % str(res))
 
 ## get file names on camera
-files= cmd('getFileList')
-for file in files:
-    # print(file)
-    for key in file: # sub directory
-        subfiles=cmd('getFileList', key)
-        for subfile in subfiles:
-            print(subfile)
+#files= cmd('getFileList')
+#for file in files:
+#    # print(file)
+#    for key in file: # sub directory
+#        subfiles=cmd('getFileList', key)
+#        for subfile in subfiles:
+#            print(subfile)
 
 
 

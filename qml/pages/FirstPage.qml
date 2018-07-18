@@ -30,7 +30,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-
+import QtMultimedia 5.0
 
 Page {
     id: page
@@ -61,13 +61,48 @@ Page {
             width: page.width
             spacing: Theme.paddingLarge
             PageHeader {
-                title: api.var1
+                title: api.loaded
             }
             Label {
                 x: Theme.horizontalPageMargin
-                text: api.var2
+                text: api.streamUrl + ' ' + testVideo.vfstarted
                 color: Theme.secondaryHighlightColor
                 font.pixelSize: Theme.fontSizeExtraLarge
+            }
+            Video {
+                id: testVideo
+                property string url: api.streamUrl
+                property bool vfstarted: api.vfstarted
+                onVfstartedChanged: {
+                    console.log('video:', vfstarted, url)
+                    if(vfstarted) {
+                        source = url
+                        play()
+                    } else {
+                        source = ''
+                        stop()
+                    }
+                }
+
+                width: parent.width
+                height: width*0.8
+                source: ''
+                autoLoad: true
+                autoPlay: true
+                onErrorStringChanged: {
+                    console.log('video error', errorString)
+                }
+
+//                Rectangle {
+//                    color: '#cccccc'
+//                    anchors.fill: parent
+//                }
+            }
+            TextArea {
+                readOnly: true
+                text: JSON.stringify(api.settings, null, 1);
+                height: Theme.itemSizeHuge * 5
+                width: parent.width
             }
         }
     }
