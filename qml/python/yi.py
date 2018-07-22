@@ -16,12 +16,17 @@ def notificationCB(result):
     print('notificationCB', result);
     pyotherside.send("notification", result)
 
-camera= YiAPI()
-
+camera= None
+def log(entry):
+    pyotherside.send("log", entry)
 # wrap camera.cmd to use pyotherside methods later
 def cmd(commandName, arg=None):
+    log(['cmd', commandName, arg])
     result= camera.cmd(getattr(Yi4kAPI, commandName), arg)
     if result == -99999: #disconnected
+        pyotherside.send("disconnected")
+        return None
+    elif result == -99998: #timeout
         pyotherside.send("disconnected")
         return None
     else:
@@ -34,11 +39,15 @@ def getStreamURL():
     pyotherside.send("streamurl", camera.rtsp)
     return camera.rtsp
 
-# set up callbacks
-for event in ['start_video_record', 'video_record_complete', 'start_photo_capture', 'photo_taken', 'vf_start', 'vf_stop', 'enter_album', 'exit_album', 'battery', 'battery_status', 'adapter', 'adapter_status', 'sdcard_format_done', 'setting_changed']:
-    camera.setCB(event, notificationCB)
+def connect():
+    global camera
+    camera = YiAPI()
+    pyotherside.send("connection", camera.rtsp != None)
+    # set up callbacks
+    for event in ['start_video_record', 'video_record_complete', 'start_photo_capture', 'photo_taken', 'vf_start', 'vf_stop', 'enter_album', 'exit_album', 'battery', 'battery_status', 'adapter', 'adapter_status', 'sdcard_format_done', 'setting_changed']:
+        camera.setCB(event, notificationCB)
 
-
+#cmd('getSettingOptions', 'video_resolution')
 
 ##### playground
 

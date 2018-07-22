@@ -70,6 +70,7 @@ class YiAPICommandGen():
 	def makeCmd(self, _cmdPrep, _val=None):
 		_cmdPrep.update(self.params)
 
+#		print('_cmdPrep', _cmdPrep, _val)
 
 		#assign provided _val[] values to stored .variable[] parameters
 		if not isinstance(_val, list) and not isinstance(_val, tuple):
@@ -81,8 +82,6 @@ class YiAPICommandGen():
 					_cmdPrep[pair[0]]+= pair[1]
 			else:
 				_cmdPrep[pair[0]]= pair[1]
-
-
 		return YiAPICommand(_cmdPrep, self.resultReq, self.resultCB)
 
 
@@ -120,6 +119,7 @@ class YiAPICommand():
 
 
 	def result(self):
+#		print('commandSend', self.cmdSend)
 		if not 'rval' in self.resultDict:
 			logging.error('Camera timeout')
 			return -99998
@@ -130,7 +130,10 @@ class YiAPICommand():
 
 		if callable(self.resultCB):
 			return self.resultCB(self.resultDict)
-
+		if 'msg_id' in self.cmdSend: #settingOptions
+			print('cmdsend',self.cmdSend)
+			if self.cmdSend['msg_id'] == 9:
+				return self.resultDict
 		if 'param' in self.resultDict:
 			return self.resultDict['param']
 

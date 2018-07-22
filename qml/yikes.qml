@@ -36,12 +36,20 @@ import "lib"
 ApplicationWindow
 {
     property alias api: pythonAPI
+    property alias strings: cameraStrings
     initialPage: Component { FirstPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: defaultAllowedOrientations
     YIapi {
         id: pythonAPI
     }
+    CameraStrings {
+        id: cameraStrings
+    }
+    Options {
+        id: options
+    }
+
     Keys.onPressed: {
         if (event.key === 17825825) { //xperia x shutter
             api.shutter();

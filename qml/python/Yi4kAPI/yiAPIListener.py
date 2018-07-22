@@ -55,7 +55,7 @@ class YiAPIListener(threading.Thread):
 
 			logging.debug("Part %db" % len(recv))
 			dec= recv.decode()
-			print('raw', dec)
+#			print('raw', dec)
 			jsonA= self.jsonStream.find(dec)
 			for resJSON in jsonA:
 				logging.info('Res %s' % str(resJSON))

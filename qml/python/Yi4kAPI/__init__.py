@@ -369,3 +369,6 @@ setLoopDuration=		YiAPICommandGen(2,	'setLoopDuration',
 	params= {'type':'loop_rec_duration'},
 	variable= 'param'
 )
+getSettingOptions=		YiAPICommandGen(9, 'getSettingOptions',
+	variable='param'
+)

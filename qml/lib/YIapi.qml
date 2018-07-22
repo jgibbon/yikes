@@ -5,30 +5,55 @@ Item {
     id: api
     property bool loaded: false //python loaded
     property bool connected: false //cam connected
+    property alias connectionRetries: reconnectTimer.retries
 
     property var settings: ({}) //camera settings
+    property var settingsOptions: ({}) //valid options for settings
     property string streamUrl:''
 
     property bool vfstarted: false //viewfinder / stream started
+    property bool modeIsVideo: true //false: photo mode
+    /*
+      subMode: empty for normal photo/video, else:
+        Photo:
+            - Timer: timer
+            - Burst: burst
+        Video:
+            - Time Lapse: timelapse
+            - Slow Motion: slowmotion
+    */
+    property string subMode: ''
+
     property bool isrecordingvideo: false
     function cmd(command, arg, cb) {
-        return pyscript.call('yi.cmd', [command], cb);
+        if(!connected) {
+            return null
+        } else if(arg) {
+            return pyscript.call('yi.cmd', [command, arg], cb);
+        } else { //prevent debug warning:
+            return pyscript.call('yi.cmd', [command], cb);
+        }
     }
+    function getSettingOptions(key) {
+        if(!(key in settingsOptions)) {
+            api.cmd('getSettingOptions', key);
+        }
+    }
+
     // convenience methods
     function shutter(){ // on shutter press
         console.log('RUNNING SHUTTER');
-        cmd('capturePhoto');
-        //video
-//        if(settings.rec_mode === 'record') {
-//            if(!isrecordingvideo) {
-//                cmd('startRecording');
-//                isrecordingvideo = true;
-//            } else {
-//                cmd('stopRecording');
-//                isrecordingvideo = true;
-//            }
-//        } else if(settings.rec_mode === 'TODO') {
-//        }
+        if(modeIsVideo) {
+                        if(!isrecordingvideo) {
+                            cmd('startRecording');
+                            isrecordingvideo = true;
+                        } else {
+                            cmd('stopRecording');
+                            isrecordingvideo = false;
+                        }
+        } else {
+            cmd('capturePhoto');
+        }
     }
 
     Python {
@@ -56,7 +81,9 @@ Item {
 
                 if(result.type === 'setting_changed') {
                     console.log('api: setting changed', result.param, 'old:', api.settings[result.param], 'new:', result.value);
-                    api.settings[result.param] = result.value;
+                    var oldSettings = api.settings;
+                    oldSettings[result.param] = result.value;
+                    api.settings = oldSettings;
                 } else if(result.type === 'vf_start') {
                     api.vfstarted = false
                     api.vfstarted = true
@@ -67,19 +94,60 @@ Item {
                 } else if(result.type === 'video_record_complete') {
                     api.isrecordingvideo = false
                 }
+                //try to get modeIsVideo & submode
+                var sub = ''
+                if(result.type === 'setting_changed' && result.param === 'rec_mode') {
+                    modeIsVideo = true
+                    //default: record
+//                    if(result.value === 'record_timelapse') {
+//                        sub = 'timelapse'
+//                    } else if(result.value === 'record_slow_motion') {
+//                        sub = 'slowmotion'
+//                    }
+                    subMode = result.param;
+                } else if(result.type === 'setting_changed' && result.param === 'capture_mode') {
+                    modeIsVideo = false
+                    isrecordingvideo = false
+                    //default: 'precise_quality'
+//                    if(result.value === 'precise self quality') {
+//                        sub = 'timer'
+//                    } else if(result.value === 'burst quality') {
+//                        sub = 'burst'
+//                    }
+                    subMode =result.param
+                }
             })
             setHandler('disconnected', function() {
                 console.log('api: disconnected')
+                api.connected = false
+            })
+            setHandler('connection', function(success){
+                api.connected = success;
             })
             //general callback, always fired.
             setHandler('callback', function(commandName, result) {
+                api.connected = true
                 //                console.log('api: general callback', commandName, JSON.stringify(result, null, 1));
                                 console.log('api: general callback', commandName);
             })
             setHandler('callback_getSettings', function(commandName, result){
 //                console.log('settings', typeof result)
 //                console.log(result);
+//                                console.log(JSON.stringify(result, null, 1));
                 api.settings = result;
+            });
+            setHandler('callback_getSettingOptions', function(commandName, result){
+//                console.log(commandName, Object.keys(result).join(', '))
+
+//                console.log(JSON.stringify(result, null, 1));
+                var options = [];
+                if(true || result.permission === 'settable') {
+                    options = result.options
+                }
+                var oldSettings = api.settingsOptions;
+                console.log(result.param, options.join(', '))
+                oldSettings[result.param] = options
+                api.settingsOptions = oldSettings
             });
             setHandler('callback_startViewFinder', function(commandName, result){
                 //                console.log('settings', typeof result)
@@ -92,7 +160,10 @@ Item {
                 api.vfstarted = false
             });
             setHandler('streamurl', function(url){
-                api.streamUrl = url
+                if(url) {
+                    api.connected = true
+                    api.streamUrl = url
+                }
             });
 
 
@@ -112,19 +183,53 @@ Item {
 
     }
     onLoadedChanged: {
-        if(loaded) {
+        pyscript.call('yi.connect'); //if successful, it's connected
+    }
+
+    onConnectedChanged: {
+        if(connected) {
             api.cmd('getSettings', null, function(){
+
                 pyscript.call('yi.getStreamURL');
-                viewFinderTimer.start()
+                initializeCameraModeTimer.start()
+
             });
+        }
+    }
+    Timer {
+        id: reconnectTimer
+        interval: 3000
+        repeat: true
+        running: !connected
+        property int retries: 0
+        onRunningChanged: {
+            if(!running) {
+                retries = 0
+            }
+        }
+
+        onTriggered: {
+            retries = retries + 1
+            pyscript.call('yi.connect'); //if successful, it's connected
         }
     }
 
     Timer { //didn't work directly, so we're starting it delayed.
         id:viewFinderTimer
         onTriggered: {
-            api.cmd('startViewFinder');
+            api.cmd('startViewFinder', null, function(){
+//                initializeCameraModeTimer.start()
+            });
         }
         interval: 200
+    }
+    Timer { //didn't work directly, so we're starting it delayed.
+        id:initializeCameraModeTimer
+        onTriggered: {
+            api.cmd(options.startCameraMode[0], options.startCameraMode[1], function(){
+                viewFinderTimer.start()
+            })
+        }
+        interval: 400
     }
 }

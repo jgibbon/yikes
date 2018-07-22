@@ -24,7 +24,12 @@ DISTFILES += qml/yikes.qml \
     rpm/yikes.yaml \
     translations/*.ts \
     yikes.desktop \
-    python/pytest.py
+    python/pytest.py \
+    qml/lib/MainpageDisconnected.qml \
+    qml/lib/MainpageConnected.qml \
+    qml/lib/CameraModeSwitcher.qml \
+    qml/lib/CameraShutterButton.qml \
+    qml/lib/HighlightImage.qml
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128
 
