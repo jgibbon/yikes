@@ -6,7 +6,30 @@ import QtMultimedia 5.0
 Item {
     id: connectedView
     anchors.fill: parent
-    states: []
+    states: [
+        State {
+            name: "landscape"
+            when: page.isLandscape
+            AnchorChanges {
+                target: shutterArea
+                anchors.bottom: undefined
+                anchors.horizontalCenter: undefined
+                anchors.right: connectedView.right
+                anchors.verticalCenter: connectedView.verticalCenter
+            }
+        },
+        State {
+            name: "portrait"
+            when: page.isPortrait
+            AnchorChanges {
+                target: shutterArea
+                anchors.bottom: connectedView.bottom
+                anchors.horizontalCenter: connectedView.horizontalCenter
+                anchors.right: undefined
+                anchors.verticalCenter: undefined
+            }
+        }
+    ]
 //    PropertyAnimation on opacity {
 //        duration: 1000
 //    }
@@ -22,7 +45,9 @@ Item {
         }
         onReleased: {
             console.log('onreleased', Math.abs(startX - mouse.x), Math.abs(startY - mouse.y))
-            if(Math.abs(startY - mouse.y) < Theme.itemSizeMedium && Math.abs(startX - mouse.x) > Theme.itemSizeMedium) {
+            var moveX = Math.abs(startX - mouse.x);
+            var moveY = Math.abs(startY - mouse.y);
+            if(moveY < Theme.itemSizeExtraLarge && moveX > Theme.itemSizeMedium && moveX > moveY) {
                 if(startX > mouse.x) {
 //                    cameraModeSwitcher.setVideo()
                     cameraModeMainSwitcher.swipedLeft()
@@ -40,9 +65,9 @@ Item {
         anchors {
             left: parent.left
             right: parent.right
-            top: cameraModeSelectArea.bottom
-            bottom: shutterArea.top
-            topMargin: Theme.paddingMedium
+            top: parent.top
+            bottom: parent.bottom
+//            topMargin: Theme.paddingMedium
         }
 
         ViewFinder {
@@ -73,12 +98,7 @@ Item {
             left: parent.left
             margins: Theme.paddingMedium
         }
-//            Rectangle {
-//                color: '#ff0000'
-//                opacity: 0.2
-//                anchors.fill: parent
 
-//            }
         CameraModeSubSwitcher {
             id: cameraModeSubSwitcher
             anchors.centerIn: parent
@@ -88,10 +108,6 @@ Item {
         id: shutterArea
         width: Theme.itemSizeExtraLarge
         height: Theme.itemSizeExtraLarge
-        anchors {
-            bottom: parent.bottom
-            horizontalCenter: parent.horizontalCenter
-        }
         CameraShutterButton{
 
         }

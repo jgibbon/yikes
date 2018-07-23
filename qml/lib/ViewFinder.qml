@@ -57,8 +57,8 @@ VideoOutput {
 //        widthAnimation.to = returnedWidth
 //        widthAnimation.start()
     }
-    anchors.horizontalCenter: parent.horizontalCenter
-//    anchors.centerIn: parent
+//    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.centerIn: parent
     width: parentWidth
     height: width / aspectRatio
     source: MediaPlayer {
