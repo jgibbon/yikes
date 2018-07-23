@@ -372,3 +372,6 @@ setLoopDuration=		YiAPICommandGen(2,	'setLoopDuration',
 getSettingOptions=		YiAPICommandGen(9, 'getSettingOptions',
 	variable='param'
 )
+getBatteryLevel=		YiAPICommandGen(13, 'getBatteryLevel',
+variable='param'
+)

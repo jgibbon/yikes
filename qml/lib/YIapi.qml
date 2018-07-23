@@ -13,6 +13,9 @@ Item {
 
     property bool vfstarted: false //viewfinder / stream started
     property bool modeIsVideo: true //false: photo mode
+
+    property int battery: -1 //percentage
+    property int adapterStatus: -1 //no way to query? waiting for events… 1-> charging
     /*
       subMode: empty for normal photo/video, else:
         Photo:
@@ -93,7 +96,12 @@ Item {
                     api.isrecordingvideo = true
                 } else if(result.type === 'video_record_complete') {
                     api.isrecordingvideo = false
+                } else if(result.type === 'battery'){
+                    battery = parseInt(result.param)
+                } else if(result.type === 'adapter_status'){
+                    adapterStatus = parseInt(result.param)
                 }
+
                 //try to get modeIsVideo & submode
                 var sub = ''
                 if(result.type === 'setting_changed' && result.param === 'rec_mode') {
@@ -147,6 +155,11 @@ Item {
                                 console.log(commandName, result);
                 api.vfstarted = false
             });
+            setHandler('callback_getBatteryLevel', function(commandName, result){
+                //                console.log('settings', typeof result)
+                                console.log(commandName, result);
+                api.battery = parseInt(result)
+            });
             setHandler('streamurl', function(url){
                 if(url) {
                     api.connected = true
@@ -176,11 +189,13 @@ Item {
 
     onConnectedChanged: {
         if(connected) {
-            api.cmd('getSettings', null, function(){
+            api.cmd('getBatteryLevel', null, function(){
+                api.cmd('getSettings', null, function(){
 
                 pyscript.call('yi.getStreamURL');
                 initializeCameraModeTimer.start()
 
+                });
             });
         }
     }

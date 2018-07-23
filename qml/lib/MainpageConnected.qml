@@ -74,6 +74,11 @@ Item {
             id: viewFinder
         }
     }
+    CameraBatteryIndicator {
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.topMargin: Theme.paddingMedium
+    }
 
     Item {
         id: cameraModeSelectArea
