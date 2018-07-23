@@ -7,5 +7,7 @@ HighlightImage {
     image.anchors.fill: undefined
     image.opacity: highlighted? 1:0.7
     color: Theme.primaryColor
+    useShadow: true
+    shadowColor: Theme.highlightDimmerColor
     onClicked: function(){parent.clickedFunc()}
 }
