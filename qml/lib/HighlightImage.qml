@@ -2,10 +2,11 @@ import QtQuick 2.2
 import Sailfish.Silica 1.0
 
 MouseArea {
+    id: root
     property alias image: image
     property alias source: image.source
     property bool highlighted: false
-
+    property color color: Theme.highlightColor
 //    property var onClicked: function(){}
 
     Image {
@@ -13,7 +14,7 @@ MouseArea {
         anchors.fill: parent
         anchors.centerIn: parent
         layer.effect: ShaderEffect {
-            property color color: Theme.highlightColor
+            property color color: root.color
             fragmentShader: "
                         varying mediump vec2 qt_TexCoord0;
                         uniform highp float qt_Opacity;

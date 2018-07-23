@@ -94,7 +94,10 @@ VideoOutput {
         property color lineColor: Theme.primaryColor
         opacity: 0.5
         anchors.fill: parent
-        visible: viewFinder.useGrid && mediaPlayer.vfstarted && mediaPlayer.playbackState === MediaPlayer.PlayingState
+        visible: viewFinder.useGrid
+                 && mediaPlayer.vfstarted
+                 && mediaPlayer.playbackState === MediaPlayer.PlayingState
+//                 && mediaPlayer.bufferProgress === MediaPlayer.Buffered
         Item {
             id: horizontalLines
             height: parent.height / 3

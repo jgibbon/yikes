@@ -29,7 +29,8 @@ DISTFILES += qml/yikes.qml \
     qml/lib/MainpageConnected.qml \
     qml/lib/CameraModeSwitcher.qml \
     qml/lib/CameraShutterButton.qml \
-    qml/lib/HighlightImage.qml
+    qml/lib/HighlightImage.qml \
+    qml/lib/CameraModeSubSwitcher.qml
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128
 

@@ -25,12 +25,28 @@ Item {
             if(Math.abs(startY - mouse.y) < Theme.itemSizeMedium && Math.abs(startX - mouse.x) > Theme.itemSizeMedium) {
                 if(startX > mouse.x) {
 //                    cameraModeSwitcher.setVideo()
-                    cameraModeSwitcher.swipedLeft()
+                    cameraModeMainSwitcher.swipedLeft()
                 } else {
 //                    cameraModeSwitcher.setPhoto()
-                    cameraModeSwitcher.swipedRight()
+                    cameraModeMainSwitcher.swipedRight()
                 }
             }
+        }
+    }
+
+    Item {
+        id: viewFinderArea
+//        opacity: 0.3
+        anchors {
+            left: parent.left
+            right: parent.right
+            top: cameraModeSelectArea.bottom
+            bottom: shutterArea.top
+            topMargin: Theme.paddingMedium
+        }
+
+        ViewFinder {
+            id: viewFinder
         }
     }
 
@@ -43,22 +59,29 @@ Item {
             horizontalCenter: parent.horizontalCenter
             margins: Theme.paddingMedium
         }
-        CameraModeSwitcher{
-            id: cameraModeSwitcher
+        CameraModeMainSwitcher {
+            id: cameraModeMainSwitcher
         }
     }
-    Item {
-        id: viewFinderArea
-        anchors {
-            left: parent.left
-            right: parent.right
-            top: cameraModeSelectArea.bottom
-            bottom: shutterArea.top
-            topMargin: Theme.paddingMedium
-        }
 
-        ViewFinder {
-            id: viewFinder
+    Item {
+        id: cameraSubModeSelectArea
+        width: Theme.itemSizeSmall
+        height: parent.height
+        anchors {
+            top: parent.top
+            left: parent.left
+            margins: Theme.paddingMedium
+        }
+//            Rectangle {
+//                color: '#ff0000'
+//                opacity: 0.2
+//                anchors.fill: parent
+
+//            }
+        CameraModeSubSwitcher {
+            id: cameraModeSubSwitcher
+            anchors.centerIn: parent
         }
     }
     Item {

@@ -7,19 +7,12 @@ QtObject {
     //general options
     /*
       startCameraMode: We need to set the camera mode on start because it is
-        impossible to guess from settings (we can only guess after change events)
 
-        possible modes, at least for yi 4k, are:
-        Video:
-            ['setRecordMode', 'record']
-            ['setRecordMode', 'record_timelapse'] //time lapse
-            ['setRecordMode', 'record_slow_motion'] //slow motion
-        Photo:
-            ['setCaptureMode', 'precise quality']
-            ['setCaptureMode', 'precise self quality'] //timer
-            ['setCaptureMode', 'burst quality'] //burst
+        possible modes are:
+        - 'video'
+        - 'photo'
     */
-    property var startCameraMode: ['setRecordMode', 'record']
+    property var startCameraMode: 'video'
 
     //view finder (stream) options
     property bool useViewFinder: true

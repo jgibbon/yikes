@@ -98,22 +98,10 @@ Item {
                 var sub = ''
                 if(result.type === 'setting_changed' && result.param === 'rec_mode') {
                     modeIsVideo = true
-                    //default: record
-//                    if(result.value === 'record_timelapse') {
-//                        sub = 'timelapse'
-//                    } else if(result.value === 'record_slow_motion') {
-//                        sub = 'slowmotion'
-//                    }
                     subMode = result.param;
                 } else if(result.type === 'setting_changed' && result.param === 'capture_mode') {
                     modeIsVideo = false
                     isrecordingvideo = false
-                    //default: 'precise_quality'
-//                    if(result.value === 'precise self quality') {
-//                        sub = 'timer'
-//                    } else if(result.value === 'burst quality') {
-//                        sub = 'burst'
-//                    }
                     subMode =result.param
                 }
             })
@@ -213,23 +201,25 @@ Item {
             pyscript.call('yi.connect'); //if successful, it's connected
         }
     }
-
-    Timer { //didn't work directly, so we're starting it delayed.
-        id:viewFinderTimer
-        onTriggered: {
-            api.cmd('startViewFinder', null, function(){
-//                initializeCameraModeTimer.start()
-            });
-        }
-        interval: 200
-    }
     Timer { //didn't work directly, so we're starting it delayed.
         id:initializeCameraModeTimer
         onTriggered: {
-            api.cmd(options.startCameraMode[0], options.startCameraMode[1], function(){
+
+            var command = ['setRecordMode', api.settings['rec_mode']];
+            if(options.startCameraMode == 'photo') {
+                command = ['setCaptureMode', api.settings['capture_mode']];
+            }
+            api.cmd(command[0], command[1], function(){
                 viewFinderTimer.start()
             })
         }
         interval: 400
+    }
+    Timer { //didn't work directly, so we're starting it delayed.
+        id:viewFinderTimer
+        onTriggered: {
+            api.cmd('startViewFinder', null, function(){});
+        }
+        interval: 200
     }
 }
