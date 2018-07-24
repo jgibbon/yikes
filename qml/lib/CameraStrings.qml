@@ -1,8 +1,8 @@
-import QtQuick 2.0
+import QtQuick 2.2
 /*
     Helper for Camera strings translations… this will be some work ^_^
 */
-Item {
+QtObject {
     id: root
     function get(name) {
         return root[name] || name;
