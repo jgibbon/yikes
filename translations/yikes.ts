@@ -2,6 +2,41 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>AppSettingsPage</name>
+    <message>
+        <source>Application Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Camera Start Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Photo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Viewfinder Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Viewfinder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CameraSettingsPage</name>
     <message>
         <source>Camera Settings</source>
@@ -410,6 +445,10 @@
     <name>FirstPage</name>
     <message>
         <source>Camera Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Application Settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -73,10 +73,12 @@ Page {
                                                     {"key": key, "currentValue": currentValue})
                         dialog.accepted.connect(function() {
 //                            console.log('setRawSetting param:', dialog.currentValue, 'type: ', key)
-                            api.cmd('setRawSetting', {param: dialog.currentValue, type: key},
-                                    function(){
-                                        api.cmd('getSettings')
-                                    })
+                            if(api.settings[key] !== dialog.currentValue) {
+                                api.cmd('setRawSetting', {param: dialog.currentValue, type: key},
+                                        function(){
+                                            api.cmd('getSettings')
+                                        })
+                            }
                         })
                     }
                 }

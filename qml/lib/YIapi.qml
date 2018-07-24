@@ -145,6 +145,12 @@ Item {
                 oldSettings[result.param] = options
                 api.settingsOptions = oldSettings
             });
+            setHandler('callback_setCaptureMode', function(){
+                modeIsVideo = false;
+            });
+            setHandler('callback_setRecordMode', function(){
+                modeIsVideo = true;
+            });
             setHandler('callback_startViewFinder', function(commandName, result){
                 //                console.log('settings', typeof result)
                                 console.log(commandName, result);
@@ -224,6 +230,7 @@ Item {
             if(options.startCameraMode == 'photo') {
                 command = ['setCaptureMode', api.settings['capture_mode']];
             }
+            console.log('INIT COMMAND', command[0], command[1])
             api.cmd(command[0], command[1], function(){
                 viewFinderTimer.start()
             })
@@ -233,8 +240,19 @@ Item {
     Timer { //didn't work directly, so we're starting it delayed.
         id:viewFinderTimer
         onTriggered: {
-            api.cmd('startViewFinder', null, function(){});
+            if(options.useViewFinder) {
+                api.cmd('startViewFinder', null, function(){});
+            }
         }
         interval: 200
+    }
+    Component.onDestruction: {
+
+        console.log('exiting')
+        if(vfstarted) {
+
+            console.log('stopping viewfinder')
+            api.cmd('stopViewFinder');
+        }
     }
 }

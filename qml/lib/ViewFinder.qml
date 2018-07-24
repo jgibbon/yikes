@@ -4,7 +4,18 @@ import Sailfish.Silica 1.0
 
 VideoOutput {
     id: viewFinder
-    property bool useGrid: true
+    property bool useGrid: options.useGrid
+    property bool useViewFinder: options.useViewFinder
+    visible: useViewFinder
+    onUseViewFinderChanged: {
+        if(!useViewFinder) {
+            api.cmd('stopViewFinder', null, function(){});
+        } else {
+
+            api.cmd('startViewFinder', null, function(){});
+        }
+    }
+
     /* set size manually to prevent binding loop: */
     property real aspectRatio: sourceRect.width / sourceRect.height
     onAspectRatioChanged: setWidth()
@@ -64,7 +75,7 @@ VideoOutput {
     source: MediaPlayer {
         id: mediaPlayer
         property string url: api.streamUrl
-        property bool vfstarted: api.vfstarted
+        property bool vfstarted: api.vfstarted && options.useViewFinder
         onVfstartedChanged: {
             console.log('video:', vfstarted, url)
             if(vfstarted) {

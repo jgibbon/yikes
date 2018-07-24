@@ -1,6 +1,6 @@
 import QtQuick 2.0
 
-QtObject {
+PersistentObject {
     id: options
     objectName: "options"
 
@@ -12,7 +12,7 @@ QtObject {
         - 'video'
         - 'photo'
     */
-    property var startCameraMode: 'video'
+    property string startCameraMode: 'video'
 
     //view finder (stream) options
     property bool useViewFinder: true

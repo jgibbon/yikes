@@ -49,6 +49,10 @@ Page {
                 enabled: api.connected
                 onClicked: pageStack.push(Qt.resolvedUrl("../pages/CameraSettingsPage.qml"))
             }
+            MenuItem {
+                text: qsTr("Application Settings")
+                onClicked: pageStack.push(Qt.resolvedUrl("../pages/AppSettingsPage.qml"))
+            }
         }
         contentHeight: page.height
 
