@@ -34,7 +34,7 @@ MouseArea {
                             }
                         "
             }
-            layer.enabled: parent.highlighted
+            layer.enabled: root.highlighted
             layer.samplerName: "source"
         }
     }
@@ -42,13 +42,13 @@ MouseArea {
 
     DropShadow {
             visible: root.useShadow
-            anchors.fill: image
+            anchors.fill: container
             horizontalOffset: 0
             verticalOffset: 0
             radius: 2.0
             samples: 2
             color: root.shadowColor
-            source: image
+            source: container
         }
     Component.onCompleted: {
 //        mouseArea.clicked.connect(onClicked)

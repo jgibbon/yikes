@@ -2,6 +2,17 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>CameraSettingsPage</name>
+    <message>
+        <source>Camera Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find all raw settings of the Camera</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CameraStrings</name>
     <message>
         <source>app_status</source>
@@ -398,7 +409,7 @@
 <context>
     <name>FirstPage</name>
     <message>
-        <source>Show Page 2</source>
+        <source>Camera Settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -136,12 +136,12 @@ Item {
 //                console.log(commandName, Object.keys(result).join(', '))
 
 //                console.log(JSON.stringify(result, null, 1));
-                var options = [];
-                if(true || result.permission === 'settable') {
-                    options = result.options
-                }
+                var options = result;
+//                if(true || result.permission === 'settable') {
+//                    options = result
+//                }
                 var oldSettings = api.settingsOptions;
-                console.log(result.param, options.join(', '))
+//                console.log(result.param, options.options.join(', '))
                 oldSettings[result.param] = options
                 api.settingsOptions = oldSettings
             });
