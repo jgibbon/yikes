@@ -15,10 +15,13 @@ from Yi4kAPI import *
 
 if __name__ == "__main__":
     camera= YiAPI()
-    print(camera.rtsp)
-    options=camera.cmd(getSettingOptions, 'capture_mode')
-    print(options)
+#    print(camera.rtsp)
+#    options=camera.cmd(getSettingOptions, 'capture_mode')
+#    print(options)
 #    print(camera.cmd(getSettingOptions,))
-    camera.cmd(setCaptureMode, 'precise quality')
+    print('normal')
+#    camera.cmd(setCaptureMode, 'precise quality')
+    print('raw')
+    camera.cmd(setRawSetting, {'param':'precise quality', 'type':'capture_mode'})
 #    camera.cmd(capturePhoto)
 #    subprocess.call(['vlc', camera.rtsp, '--network-caching', '2000'])

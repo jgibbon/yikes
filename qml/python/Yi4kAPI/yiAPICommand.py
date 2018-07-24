@@ -70,18 +70,24 @@ class YiAPICommandGen():
 	def makeCmd(self, _cmdPrep, _val=None):
 		_cmdPrep.update(self.params)
 
-#		print('_cmdPrep', _cmdPrep, _val)
-
 		#assign provided _val[] values to stored .variable[] parameters
 		if not isinstance(_val, list) and not isinstance(_val, tuple):
 			_val= [_val]
 
-		for pair in zip(self.variable,_val):
-			if pair[0] in _cmdPrep and isinstance(_cmdPrep[pair[0]], str):
-				if isinstance(pair[1], str):
-					_cmdPrep[pair[0]]+= pair[1]
-			else:
-				_cmdPrep[pair[0]]= pair[1]
+		if self.variable == [] and _val != [None]: #raw
+			for key in _val[0]:
+				_cmdPrep[key] = _val[0][key]
+		else: 
+			for pair in zip(self.variable,_val):
+				if pair[0] in _cmdPrep and isinstance(_cmdPrep[pair[0]], str):
+					if isinstance(pair[1], str):
+						_cmdPrep[pair[0]]+= pair[1]
+				else:
+					_cmdPrep[pair[0]]= pair[1]
+
+
+
+		print('_cmdPrep 2', _cmdPrep)
 		return YiAPICommand(_cmdPrep, self.resultReq, self.resultCB)
 
 
