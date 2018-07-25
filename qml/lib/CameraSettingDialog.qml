@@ -7,6 +7,13 @@ Dialog {
     property string key
     property string currentValue
 
+    property string readableString: cameraStrings.get(key)
+    DialogHeader {
+                id: dialogHeader
+                dialog: dialog
+                title: readableString !== key ? readableString : key
+                acceptText: qsTr('Change', 'short: change setting or submit dialog')
+            }
     ListModel {
         id: optionsModel
         property var options: api.settingsOptions[key] ? api.settingsOptions[key].options : []
@@ -24,21 +31,39 @@ Dialog {
             api.getSettingOptions(key)
         }
     }
+    Label {
+        id: keyNameLabel
+        visible: readableString !== key
+        color: Theme.highlightColor
+        text: key
+        font.pixelSize: Theme.fontSizeSmall
+        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 
+        anchors {
+            top: dialogHeader.bottom
+            left: parent.left
+            right: parent.right
+            leftMargin: Theme.horizontalPageMargin
+            rightMargin: Theme.horizontalPageMargin
+//            bottom: parent.bottom
+        }
+    }
     SilicaListView {
         id: optionsColumn
-        header: DialogHeader {
-            id: dialogHeader
-            title: key
-        }
+//        header:
         clip: true
-        anchors.fill: parent
+        anchors {
+            top: keyNameLabel.bottom
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+
         model: optionsModel
         delegate: MenuItem {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    console.log('option CLICKED!', option, currentValue)
                     currentValue = option
                 }
             }

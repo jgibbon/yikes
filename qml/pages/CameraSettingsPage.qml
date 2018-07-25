@@ -56,10 +56,12 @@ Page {
             delegate: ValueButton {
                 width: ListView.view.width
                 height: Theme.itemSizeSmall
+                property string readableString: cameraStrings.get(key)
                 label: key
                 value: currentValue
+                description: readableString !== key ? readableString : ''
                 property bool isSettable: {
-                    if(api.settingsOptions[key] && api.settingsOptions[key].permission === 'settable') {
+                    if(api.settingsOptions[key] && api.settingsOptions[key].permission === 'settable' && api.settingsOptions[key].options.length > 1) {
                         return true
                     }
                     return false
