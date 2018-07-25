@@ -5,81 +5,89 @@
     <name>AppSettingsPage</name>
     <message>
         <source>Application Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Programmeinstellungen</translation>
     </message>
     <message>
         <source>General Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Allgemeine Einstellungen</translation>
     </message>
     <message>
         <source>Camera Start Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Kamerastartmodus</translation>
     </message>
     <message>
         <source>Video</source>
-        <translation type="unfinished"></translation>
+        <translation>Film</translation>
     </message>
     <message>
         <source>Photo</source>
-        <translation type="unfinished"></translation>
+        <translation>Foto</translation>
     </message>
     <message>
         <source>Viewfinder Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Kamerasucheroptionen</translation>
     </message>
     <message>
         <source>Use Viewfinder</source>
-        <translation type="unfinished"></translation>
+        <translation>Kamerasucher anzeigen</translation>
     </message>
     <message>
         <source>Show Grid</source>
-        <translation type="unfinished"></translation>
+        <translation>Raster anzeigen</translation>
+    </message>
+</context>
+<context>
+    <name>CameraSettingDialog</name>
+    <message>
+        <source>Change</source>
+        <comment>short: change setting or submit dialog</comment>
+        <translation>Ändern</translation>
     </message>
 </context>
 <context>
     <name>CameraSettingsPage</name>
     <message>
         <source>Camera Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Kameraeinstellungen</translation>
     </message>
     <message>
         <source>Find all raw settings of the Camera</source>
-        <translation type="unfinished"></translation>
+        <translation>Finde alle Roheinstellungen der Kamera</translation>
     </message>
 </context>
 <context>
     <name>CameraStrings</name>
     <message>
         <source>app_status</source>
-        <translation type="unfinished"></translation>
+        <translation>Kamerastatus</translation>
     </message>
     <message>
         <source>auto_low_light</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatische Einstellung für wenig Licht</translation>
     </message>
     <message>
         <source>auto_power_off</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatische Abschaltung</translation>
     </message>
     <message>
         <source>burst_capture_number</source>
-        <translation type="unfinished"></translation>
+        <translation>Burst-Bilderanzahl</translation>
     </message>
     <message>
         <source>buzzer_ring</source>
-        <translation type="unfinished"></translation>
+        <translation>Piepsgeräusch</translation>
     </message>
     <message>
         <source>buzzer_volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Piepslautstärke</translation>
     </message>
     <message>
         <source>camera_clock</source>
-        <translation type="unfinished"></translation>
+        <translation>Kamerauhr</translation>
     </message>
     <message>
         <source>capture_mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Photoaufnahmemodus</translation>
     </message>
     <message>
         <source>dev_functions</source>
@@ -87,79 +95,79 @@
     </message>
     <message>
         <source>dewarp_support_status</source>
-        <translation type="unfinished"></translation>
+        <translation>Linsenentzerrung verfügbar</translation>
     </message>
     <message>
         <source>dual_stream_status</source>
-        <translation type="unfinished"></translation>
+        <translation>Doppelstream verfügbar</translation>
     </message>
     <message>
         <source>eis_support_status</source>
-        <translation type="unfinished"></translation>
+        <translation>Elektronische Bildstabilisierung verfügbar</translation>
     </message>
     <message>
         <source>ev_enable</source>
-        <translation type="unfinished"></translation>
+        <translation>Belichtungswert verfügbar</translation>
     </message>
     <message>
         <source>fov</source>
-        <translation type="unfinished"></translation>
+        <translation>Sichtfeld</translation>
     </message>
     <message>
         <source>hw_version</source>
-        <translation type="unfinished"></translation>
+        <translation>Hardwareversion</translation>
     </message>
     <message>
         <source>iq_eis_enable</source>
-        <translation type="unfinished"></translation>
+        <translation>Elektronische Bildstabilisierung</translation>
     </message>
     <message>
         <source>iq_photo_ev</source>
-        <translation type="unfinished"></translation>
+        <translation>Belichtungswert (Foto)</translation>
     </message>
     <message>
         <source>iq_photo_iso</source>
-        <translation type="unfinished"></translation>
+        <translation>ISO-Wert (Foto)</translation>
     </message>
     <message>
         <source>iq_photo_iso_min</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimal-ISO (Foto)</translation>
     </message>
     <message>
         <source>iq_photo_shutter</source>
-        <translation type="unfinished"></translation>
+        <translation>Belichtungszeit (Foto)</translation>
     </message>
     <message>
         <source>iq_photo_wb</source>
-        <translation type="unfinished"></translation>
+        <translation>Weißabgleich (Foto)</translation>
     </message>
     <message>
         <source>iq_video_ev</source>
-        <translation type="unfinished"></translation>
+        <translation>Belichtungswert (Film)</translation>
     </message>
     <message>
         <source>iq_video_iso</source>
-        <translation type="unfinished"></translation>
+        <translation>ISO-Wert (Film)</translation>
     </message>
     <message>
         <source>iq_video_wb</source>
-        <translation type="unfinished"></translation>
+        <translation>Weißabgleich (Film)</translation>
     </message>
     <message>
         <source>language</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprache</translation>
     </message>
     <message>
         <source>led_mode</source>
-        <translation type="unfinished"></translation>
+        <translation>LED-Modus</translation>
     </message>
     <message>
         <source>long_shutter_define</source>
-        <translation type="unfinished"></translation>
+        <translation>Langer Druck auf Auslöser</translation>
     </message>
     <message>
         <source>loop_rec_duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Loop-Aufnahmelänge</translation>
     </message>
     <message>
         <source>meter_mode</source>
@@ -171,11 +179,11 @@
     </message>
     <message>
         <source>photo_file_type</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateityp (Foto)</translation>
     </message>
     <message>
         <source>photo_file_type_settable</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateityp einstellbar (Foto)</translation>
     </message>
     <message>
         <source>photo_flat_color</source>
@@ -183,19 +191,19 @@
     </message>
     <message>
         <source>photo_quality</source>
-        <translation type="unfinished"></translation>
+        <translation>Qualität (Foto)</translation>
     </message>
     <message>
         <source>photo_sharpness</source>
-        <translation type="unfinished"></translation>
+        <translation>Schärfe (Foto)</translation>
     </message>
     <message>
         <source>photo_size</source>
-        <translation type="unfinished"></translation>
+        <translation>Auflösung (Foto)</translation>
     </message>
     <message>
         <source>photo_stamp</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeitangabe (Foto)</translation>
     </message>
     <message>
         <source>piv_enable</source>
@@ -223,15 +231,15 @@
     </message>
     <message>
         <source>precise_self_running</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeitauslöser läuft</translation>
     </message>
     <message>
         <source>precise_selftime</source>
-        <translation type="unfinished"></translation>
+        <translation>Dauer Zeitauslöser</translation>
     </message>
     <message>
         <source>product_name</source>
-        <translation type="unfinished"></translation>
+        <translation>Kameraname</translation>
     </message>
     <message>
         <source>protune</source>
@@ -239,7 +247,7 @@
     </message>
     <message>
         <source>quick_view</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorschau</translation>
     </message>
     <message>
         <source>rec_audio_support</source>
@@ -247,7 +255,7 @@
     </message>
     <message>
         <source>rec_mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufnahmemodus (Film)</translation>
     </message>
     <message>
         <source>record_photo_time</source>
@@ -267,35 +275,35 @@
     </message>
     <message>
         <source>screen_auto_lock</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatische Bildschirmsperre</translation>
     </message>
     <message>
         <source>sd_card_status</source>
-        <translation type="unfinished"></translation>
+        <translation>SD-Kartenstatus</translation>
     </message>
     <message>
         <source>sdcard_need_format</source>
-        <translation type="unfinished"></translation>
+        <translation>SD-Karte muss formatiert werden</translation>
     </message>
     <message>
         <source>serial_number</source>
-        <translation type="unfinished"></translation>
+        <translation>Seriennummer</translation>
     </message>
     <message>
         <source>slow_motion_rate</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeitlupenfaktor</translation>
     </message>
     <message>
         <source>slow_motion_res</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeitlupenauflösung</translation>
     </message>
     <message>
         <source>sound_effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Toneffekt</translation>
     </message>
     <message>
         <source>sound_effect_support</source>
-        <translation type="unfinished"></translation>
+        <translation>Toneffekt verfügbar</translation>
     </message>
     <message>
         <source>sta_connect_password</source>
@@ -319,7 +327,7 @@
     </message>
     <message>
         <source>streaming_status</source>
-        <translation type="unfinished"></translation>
+        <translation>Streamingstatus</translation>
     </message>
     <message>
         <source>support_auto_low_light</source>
@@ -445,11 +453,11 @@
     <name>FirstPage</name>
     <message>
         <source>Camera Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kameraeinstellungen</translation>
     </message>
     <message>
         <source>Application Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Programmeinstellungen</translation>
     </message>
 </context>
 <context>

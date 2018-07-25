@@ -37,6 +37,14 @@
     </message>
 </context>
 <context>
+    <name>CameraSettingDialog</name>
+    <message>
+        <source>Change</source>
+        <comment>short: change setting or submit dialog</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CameraSettingsPage</name>
     <message>
         <source>Camera Settings</source>
