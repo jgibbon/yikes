@@ -50,9 +50,18 @@ ApplicationWindow
         id: options
     }
 
+    Timer {
+        id: keyDebounceTimer
+        interval: 400
+    }
+
     Keys.onPressed: {
         if (event.key === 17825825) { //xperia x shutter
-            api.shutter();
+            if(!keyDebounceTimer.running) {
+                api.shutter();
+                keyDebounceTimer.start()
+            }
+
         }
     }
 }
