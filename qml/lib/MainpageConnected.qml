@@ -17,6 +17,16 @@ Item {
                 anchors.right: connectedView.right
                 anchors.verticalCenter: connectedView.verticalCenter
             }
+
+            AnchorChanges {
+                target: fileArea
+                anchors.left: shutterArea.left
+//                anchors.horizontalCenter: shutterArea.horizontalCenter
+                anchors.right: shutterArea.right
+                anchors.bottom: shutterArea.top
+                anchors.top: connectedView.top
+                anchors.verticalCenter: undefined
+            }
         },
         State {
             name: "portrait"
@@ -114,6 +124,40 @@ Item {
         width: Theme.itemSizeExtraLarge
         height: Theme.itemSizeExtraLarge
         CameraShutterButton{
+
+        }
+    }
+    Item {
+        id: fileArea
+        visible: api.fileList.length > 0
+        anchors {
+            top:  shutterArea.top
+            bottom: shutterArea.bottom
+            left: shutterArea.right
+            right: parent.right
+//            verticalCenter: shutterArea.verticalCenter
+        }
+        CameraFilePreviewItem {
+            anchors.centerIn: parent
+            property var fileList: api.fileList;
+            function setItem(){
+                var item;
+                if(fileList.length > 0) {
+                    console.log('setting preview item')
+                    item = fileList[0];
+                    isVideo = item.isVideo || false;
+                    previewVideo = item.previewVideo;
+                    previewImage = item.previewImage;
+                    fileName = item.fileName;
+                }
+            }
+
+            onFileListChanged: {
+                setItem()
+            }
+
+            size: Theme.itemSizeMedium
+            onClicked: pageStack.push(Qt.resolvedUrl("../pages/CameraFilesPage.qml"))
 
         }
     }

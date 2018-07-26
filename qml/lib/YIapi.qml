@@ -9,6 +9,7 @@ Item {
 
     property var settings: ({}) //camera settings
     property var settingsOptions: ({}) //valid options for settings
+    property var fileList: ({})
     property string streamUrl:''
 
     property bool vfstarted: false //viewfinder / stream started
@@ -96,10 +97,13 @@ Item {
                     api.isrecordingvideo = true
                 } else if(result.type === 'video_record_complete') {
                     api.isrecordingvideo = false
+                    api.cmd('getFileList', '100MEDIA/', function(){});
                 } else if(result.type === 'battery'){
                     battery = parseInt(result.param)
                 } else if(result.type === 'adapter_status'){
                     adapterStatus = parseInt(result.param)
+                } else if(result.type === 'photo_taken'){
+                    api.cmd('getFileList', '100MEDIA/', function(){});
                 }
 
                 //try to get modeIsVideo & submode
@@ -166,6 +170,68 @@ Item {
                                 console.log(commandName, result);
                 api.battery = parseInt(result)
             });
+            function formatFileObj(fileObj) {
+                var fileName = Object.keys(fileObj)[0]; //only one key
+                var values = fileObj[fileName].split('|');
+                return {
+                    fileName: fileName,
+                    previewVideo: fileName,
+                    previewImage: '',
+                    bytes: parseInt(values[0]),
+                    date: new Date(values[1]),
+                    isVideo: fileName.indexOf('.MP4') > -1
+                };
+            }
+
+            setHandler('callback_getFileList', function(commandName, result){
+                var tempObj = {};
+                var formattedFileList = [];
+                var hasTHM, has_thm, hasSEC;
+                var realFileName
+                for(var i=0; i< result.length; i++){
+                    var formatted = formatFileObj(result[i]);
+                    //don't add thumbnails as own entry
+                    hasTHM = formatted.fileName.indexOf('.THM') > -1;
+                    has_thm = formatted.fileName.indexOf('_thm') > -1;
+                    hasSEC = formatted.fileName.indexOf('.SEC') > -1;
+                    if(!hasTHM && !hasSEC && !has_thm) {
+                        if(!(formatted.fileName in tempObj)) {
+                            tempObj[formatted.fileName] = ({});
+                        }
+                        tempObj[formatted.fileName].fileName = formatted.fileName
+                        tempObj[formatted.fileName].bytes = formatted.bytes
+                        tempObj[formatted.fileName].date = formatted.date
+                        tempObj[formatted.fileName].isVideo = formatted.isVideo
+                        tempObj[formatted.fileName].previewVideo = tempObj[formatted.fileName].previewVideo || ''
+                        tempObj[formatted.fileName].previewImage = tempObj[formatted.fileName].previewImage || ''
+                    } else {
+                        realFileName = formatted.fileName
+                            .replace('.THM', '.MP4')
+                            .replace('.SEC', '.MP4')
+                            .replace('_thm', '');
+                        if(!(realFileName in tempObj)) {
+                            tempObj[realFileName] = {}
+                        }
+                        if(has_thm || hasSEC) {
+                            tempObj[realFileName].previewVideo = formatted.fileName
+                        } else {
+                            tempObj[realFileName].previewImage = formatted.fileName
+                        }
+                    }
+                }
+
+                var fileNames = Object.keys(tempObj);
+                for(i=0; i<fileNames.length; i++) {
+                    if(tempObj[fileNames[i]].fileName) {
+                        formattedFileList.push(tempObj[fileNames[i]]);
+                    }
+                }
+                formattedFileList.reverse()
+                api.fileList = formattedFileList
+
+                console.log(commandName, JSON.stringify(formattedFileList, null, 1));
+
+            });
             setHandler('streamurl', function(url){
                 if(url) {
                     api.connected = true
@@ -230,9 +296,9 @@ Item {
             if(options.startCameraMode == 'photo') {
                 command = ['setCaptureMode', api.settings['capture_mode']];
             }
-            console.log('INIT COMMAND', command[0], command[1])
             api.cmd(command[0], command[1], function(){
                 viewFinderTimer.start()
+
             })
         }
         interval: 400
@@ -242,6 +308,7 @@ Item {
         onTriggered: {
             if(options.useViewFinder) {
                 api.cmd('startViewFinder', null, function(){});
+                api.cmd('getFileList', '100MEDIA/', function(){});
             }
         }
         interval: 200

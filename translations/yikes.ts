@@ -37,6 +37,13 @@
     </message>
 </context>
 <context>
+    <name>CameraFilesPage</name>
+    <message>
+        <source>Camera fileList</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CameraSettingDialog</name>
     <message>
         <source>Change</source>
