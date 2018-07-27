@@ -179,7 +179,7 @@ Item {
                     previewImage: '',
                     bytes: parseInt(values[0]),
                     date: new Date(values[1]),
-                    isVideo: fileName.indexOf('.MP4') > -1
+                    isVideo: fileName.toLowerCase().indexOf('.mp4') > -1
                 };
             }
 
