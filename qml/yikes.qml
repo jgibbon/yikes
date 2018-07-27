@@ -52,11 +52,13 @@ ApplicationWindow
 
     Timer {
         id: keyDebounceTimer
-        interval: 400
+        interval: 900
     }
-
+    property var shutterKeys: [
+        17825825 //xperia x shutter
+    ]
     Keys.onPressed: {
-        if (event.key === 17825825) { //xperia x shutter
+        if (shutterKeys.indexOf(event.key) > -1) {
             if(!keyDebounceTimer.running) {
                 api.shutter();
                 keyDebounceTimer.start()
