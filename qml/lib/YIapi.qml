@@ -170,6 +170,7 @@ Item {
                     fileName: fileName,
                     previewVideo: fileName,
                     previewImage: '',
+                    rawImage:'',
                     bytes: parseInt(values[0]),
                     date: new Date(values[1]),
                     isVideo: fileName.toLowerCase().indexOf('.mp4') > -1
@@ -179,36 +180,45 @@ Item {
             setHandler('callback_getFileList', function(commandName, result){
                 var tempObj = {};
                 var formattedFileList = [];
-                var hasTHM, has_thm, hasSEC;
-                var realFileName
+                var hasTHM, has_thm, hasSEC, isRaw;
+                var keyFileName
                 for(var i=0; i< result.length; i++){
-                    var formatted = formatFileObj(result[i]);
+                    var formatted = formatFileObj(result[i]),
+                        lowercaseFileName = formatted.fileName.toLowerCase();
                     //don't add thumbnails as own entry
-                    hasTHM = formatted.fileName.indexOf('.THM') > -1;
-                    has_thm = formatted.fileName.indexOf('_thm') > -1;
-                    hasSEC = formatted.fileName.indexOf('.SEC') > -1;
-                    if(!hasTHM && !hasSEC && !has_thm) {
-                        if(!(formatted.fileName in tempObj)) {
-                            tempObj[formatted.fileName] = ({});
+                    hasTHM = lowercaseFileName.indexOf('.thm') > -1;
+                    has_thm = lowercaseFileName.indexOf('_thm') > -1;
+                    hasSEC = lowercaseFileName.indexOf('.sec') > -1;
+                    isRaw = lowercaseFileName.indexOf('.dng') > -1;
+                    //don't add raw (dng) as well
+                    if(!hasTHM && !hasSEC && !has_thm && !isRaw) {
+                        if(!(lowercaseFileName in tempObj)) {
+                            tempObj[lowercaseFileName] = ({});
                         }
-                        tempObj[formatted.fileName].fileName = formatted.fileName
-                        tempObj[formatted.fileName].bytes = formatted.bytes
-                        tempObj[formatted.fileName].date = formatted.date
-                        tempObj[formatted.fileName].isVideo = formatted.isVideo
-                        tempObj[formatted.fileName].previewVideo = tempObj[formatted.fileName].previewVideo || ''
-                        tempObj[formatted.fileName].previewImage = tempObj[formatted.fileName].previewImage || ''
+                        tempObj[lowercaseFileName].fileName = formatted.fileName
+                        tempObj[lowercaseFileName].bytes = formatted.bytes
+                        tempObj[lowercaseFileName].date = formatted.date
+                        tempObj[lowercaseFileName].isVideo = formatted.isVideo
+                        tempObj[lowercaseFileName].previewVideo = tempObj[lowercaseFileName].previewVideo || ''
+                        tempObj[lowercaseFileName].previewImage = tempObj[lowercaseFileName].previewImage || ''
+                        tempObj[lowercaseFileName].rawImage = tempObj[lowercaseFileName].rawImage || ''
+                        console.log('real entry', lowercaseFileName)
                     } else {
-                        realFileName = formatted.fileName
-                            .replace('.THM', '.MP4')
-                            .replace('.SEC', '.MP4')
-                            .replace('_thm', '');
-                        if(!(realFileName in tempObj)) {
-                            tempObj[realFileName] = {}
+                        keyFileName = lowercaseFileName
+                            .replace('.thm', '.mp4')
+                            .replace('.sec', '.mp4')
+                            .replace('_thm', '')
+                            .replace('.dng', '.jpg');
+                        if(!(lowercaseFileName in tempObj)) {
+                            tempObj[lowercaseFileName] = {}
                         }
+                        console.log('has stuff',lowercaseFileName, has_thm, hasSEC, hasTHM, isRaw)
                         if(has_thm || hasSEC) {
-                            tempObj[realFileName].previewVideo = formatted.fileName
-                        } else {
-                            tempObj[realFileName].previewImage = formatted.fileName
+                            tempObj[keyFileName].previewVideo = formatted.fileName
+                        } else if(hasTHM) {
+                            tempObj[keyFileName].previewImage = formatted.fileName
+                        } else if(isRaw) {
+                            tempObj[keyFileName].rawImage = formatted.fileName
                         }
                     }
                 }
@@ -301,8 +311,8 @@ Item {
         onTriggered: {
             if(options.useViewFinder) {
                 api.cmd('startViewFinder', null, function(){});
-                api.cmd('getFileList', '100MEDIA/', function(){});
             }
+            api.cmd('getFileList', '100MEDIA/', function(){});
         }
         interval: 200
     }
