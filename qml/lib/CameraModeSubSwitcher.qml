@@ -18,66 +18,35 @@ Item {
             NumberAnimation {}
         }
         flow.children: [
-            Item {
-                width: root.itemSize
-                height: root.itemSize
-
-                property var clickedFunc: function() {
-                    api.cmd('setCaptureMode', 'precise quality')
-                }
-
-                CameraModeHighlightImage {
-                    source: 'image://theme/icon-m-camera'
-                    highlighted: !api.modeIsVideo && api.settings['capture_mode'] === 'precise quality'
-                    onHighlightedChanged: photoRoot.flow.checkHighlighted(this)
-                }
+            CameraModeSubSwitcherItem {
+                key: 'capture_mode'
+                value: 'precise quality'
+                source: 'image://theme/icon-m-camera'
             },
-            Item {
-                width: root.itemSize
-                height: root.itemSize
-
-                property var clickedFunc: function() {
-                    api.cmd('setCaptureMode', 'precise self quality')
-                }
-
-                CameraModeHighlightImage {
-                    source: '../images/icon-m-timer-val.svg'
-                    highlighted: !api.modeIsVideo && api.settings['capture_mode'] === 'precise self quality'
-                    onHighlightedChanged: photoRoot.flow.checkHighlighted(this)
-                }
+            CameraModeSubSwitcherItem {
+                key: 'capture_mode'
+                value: 'precise self quality'
+                source: '../images/icon-m-timer-val.svg'
             },
-
-            Item {
-
-                width: root.itemSize
-                height: root.itemSize
-
-                property var clickedFunc: function() {
-                    api.cmd('setCaptureMode', 'burst quality')
-                }
-
-                CameraModeHighlightImage {
-                    source: '../images/icon-m-burst.svg'
-                    highlighted: !api.modeIsVideo && api.settings['capture_mode'] === 'burst quality'
-                    onHighlightedChanged: photoRoot.flow.checkHighlighted(this)
-                }
+            CameraModeSubSwitcherItem {
+                key: 'capture_mode'
+                value: 'burst quality'
+                source: '../images/icon-m-burst.svg'
             },
-            Item {
-
-                width: root.itemSize
-                height: root.itemSize
-
-                property var clickedFunc: function() {
-                    api.cmd('setCaptureMode', 'precise quality cont.')
-                }
-
-                CameraModeHighlightImage {
-                    source: '../images/icon-m-timelapse.svg'
-                    highlighted: !api.modeIsVideo && api.settings['capture_mode'] === 'precise quality cont.'
-                    onHighlightedChanged: photoRoot.flow.checkHighlighted(this)
-                }
+            CameraModeSubSwitcherItem {
+                key: 'capture_mode'
+                value: 'precise quality cont.'
+                source: '../images/icon-m-timelapse.svg'
             }
         ]
+        Connections {
+            target: api
+            onConnectedChanged: {
+                if(api.connected) {
+                    api.getSettingOptions('capture_mode')
+                }
+            }
+        }
     }
 
 
@@ -97,88 +66,73 @@ Item {
         itemSize: root.itemSize
         flow.children: [
 
-            Item {
-                width: root.itemSize
-                height: root.itemSize
-
-                property var clickedFunc: function() {
-                    api.cmd('setRecordMode', 'record')
-                }
-
-                CameraModeHighlightImage {
-                    source: 'image://theme/icon-m-video'
-                    highlighted: api.modeIsVideo && api.settings['rec_mode'] === 'record'
-                    onHighlightedChanged: videoRoot.flow.checkHighlighted(this)
-                }
+            CameraModeSubSwitcherItem {
+                key: 'rec_mode'
+                value: 'record'
+                source: 'image://theme/icon-m-video'
             },
 
-            Item {
-
-                width: root.itemSize
-                height: root.itemSize
-
-                property var clickedFunc: function() {
-                    api.cmd('setRecordMode', 'record_slow_motion')
-                }
-
-                CameraModeHighlightImage {
-                    source: '../images/icon-m-slowmotion.svg'
-                    highlighted: api.modeIsVideo && api.settings['rec_mode'] === 'record_slow_motion'
-                    onHighlightedChanged: videoRoot.flow.checkHighlighted(this)
-                }
+            CameraModeSubSwitcherItem {
+                key: 'rec_mode'
+                value: 'record_slow_motion'
+                source: '../images/icon-m-slowmotion.svg'
             },
-
-            Item {
-                width: root.itemSize
-                height: root.itemSize
-
-                property var clickedFunc: function() {
-                    api.cmd('setRecordMode', 'record_timelapse')
-                }
-
-                CameraModeHighlightImage {
-                    source: '../images/icon-m-timelapse.svg'
-                    highlighted: api.modeIsVideo && api.settings['rec_mode'] === 'record_timelapse'
-                    onHighlightedChanged: videoRoot.flow.checkHighlighted(this)
-                }
+            CameraModeSubSwitcherItem {
+                key: 'rec_mode'
+                value: 'record_timelapse'
+                source: '../images/icon-m-timelapse.svg'
             },
-            Item {
-
-                width: root.itemSize
-                height: root.itemSize
-
-                property var clickedFunc: function() {
-                    api.cmd('setRecordMode', 'record_loop')
-                }
-
-                CameraModeHighlightImage {
-                    source: 'image://theme/icon-m-backup'
-                    highlighted: api.modeIsVideo && api.settings['rec_mode'] === 'record_loop'
-                    onHighlightedChanged: videoRoot.flow.checkHighlighted(this)
-                }
+            CameraModeSubSwitcherItem {
+                key: 'rec_mode'
+                value: 'record_loop'
+                source: 'image://theme/icon-m-backup'
             },
-            Item {
-                width: root.itemSize
-                height: root.itemSize
-
-                property var clickedFunc: function() {
-                    api.cmd('setRecordMode', 'record_photo')
-                }
-
-                CameraModeHighlightImage {
-                    source: 'image://theme/icon-m-camera'
-                    highlighted: api.modeIsVideo && api.settings['rec_mode'] === 'record_photo'
-                    onHighlightedChanged: videoRoot.flow.checkHighlighted(this)
-                    Label {
-                        text: '+'
-                        color: Theme.primaryColor
-                        anchors.left: parent.left
-                        anchors.top: parent.top
-                        width: parent.width / 3
-                        horizontalAlignment: Text.AlignRight
-                    }
+            CameraModeSubSwitcherItem {
+                key: 'rec_mode'
+                value: 'record_photo'
+                source: 'image://theme/icon-m-camera'
+                Label {
+                    text: '+'
+                    color: Theme.primaryColor
+                    anchors.left: parent.left
+                    anchors.top: parent.top
+                    width: parent.width / 6
+                    horizontalAlignment: Text.AlignRight
                 }
             }
+
+
+//            Item {
+//                width: root.itemSize
+//                height: root.itemSize
+//                visible: !!api.settingsOptions['rec_mode'] && api.settingsOptions['rec_mode'].options.indexOf('record_photo') > -1
+//                property var clickedFunc: function() {
+//                    api.cmd('setRecordMode', 'record_photo')
+//                }
+
+//                CameraModeHighlightImage {
+//                    source: 'image://theme/icon-m-camera'
+//                    highlighted: api.modeIsVideo && api.settings['rec_mode'] === 'record_photo'
+//                    onHighlightedChanged: videoRoot.flow.checkHighlighted(this)
+//                    Label {
+//                        text: '+'
+//                        color: Theme.primaryColor
+//                        anchors.left: parent.left
+//                        anchors.top: parent.top
+//                        width: parent.width / 3
+//                        horizontalAlignment: Text.AlignRight
+//                    }
+//                }
+//            }
         ]
+
+        Connections {
+            target: api
+            onConnectedChanged: {
+                if(api.connected) {
+                    api.getSettingOptions('rec_mode')
+                }
+            }
+        }
     }
 }

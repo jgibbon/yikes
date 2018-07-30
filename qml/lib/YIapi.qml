@@ -131,21 +131,14 @@ Item {
                                 console.log('api: general callback', commandName);
             })
             setHandler('callback_getSettings', function(commandName, result){
-//                console.log('settings', typeof result)
-//                console.log(result);
-//                                console.log(JSON.stringify(result, null, 1));
                 api.settings = result;
             });
+            setHandler('callback_setRawSetting', function(commandName, result){
+                api.cmd('getSettings');//not all settings get notified :(
+            });
             setHandler('callback_getSettingOptions', function(commandName, result){
-//                console.log(commandName, Object.keys(result).join(', '))
-
-//                console.log(JSON.stringify(result, null, 1));
                 var options = result;
-//                if(true || result.permission === 'settable') {
-//                    options = result
-//                }
                 var oldSettings = api.settingsOptions;
-//                console.log(result.param, options.options.join(', '))
                 oldSettings[result.param] = options
                 api.settingsOptions = oldSettings
             });
