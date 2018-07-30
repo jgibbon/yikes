@@ -5,6 +5,7 @@ import '../lib'
 
 Page {
     id: page
+    allowedOrientations: Orientation.All
     SilicaFlickable {
         anchors.fill: parent
         PageHeader {
@@ -78,7 +79,7 @@ Page {
                             if(api.settings[key] !== dialog.currentValue) {
                                 api.cmd('setRawSetting', {param: dialog.currentValue, type: key},
                                         function(){
-                                            api.cmd('getSettings')
+//                                            api.cmd('getSettings')
                                         })
                             }
                         })
