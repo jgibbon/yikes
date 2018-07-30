@@ -9,26 +9,29 @@ MouseArea {
     property string previewImage
     property string fileName
     property int size: Theme.itemSizeMedium
-    onClicked: {
-//        pageStack.push(Qt.resolvedUrl("../pages/CameraFilesPage.qml"))
-    }
+    property bool showPreview:true
     width: size
     height: size
-    onFileNameChanged: {
-//        console.log('whoaaa!', previewFileName, isVideo);
-    }
+
 
     Loader {
-        sourceComponent: fileName!== '' ?
+        sourceComponent: fileName!== '' && showPreview ?
                                (previewImage === '' && isVideo
                                     ? videoComponent
                                     : imageComponent)
                                : (emptyComponent)
-//        asynchronous: true
     }
     Component {
         id: emptyComponent
-        Item {}
+        Item {
+            width: root.size
+            height: root.size
+            Rectangle {
+                visible: root.fileName !== ''
+                anchors.fill: parent
+                color: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity)
+            }
+        }
     }
 
     Component {
@@ -72,34 +75,20 @@ MouseArea {
                 autoPlay: true
                 anchors.fill: parent
                 onBufferProgressChanged: {
-                    console.log('video buffer', bufferProgress)
                 }
                 onPlaybackStateChanged: {
-                    console.log('video play', playbackState)
                     if(playbackState === MediaPlayer.PlayingState) {
                         pause();
                     }
                 }
             }
-            Image {
-                source: 'image://theme/icon-m-video'
-                width: parent.width / 3
-                height: width
-                anchors.centerIn: parent
-            }
-
-//            Rectangle {
-////                opacity: lastFile.progress !== 1.0
-//                anchors.fill: parent
-//                color: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity)
-////                ProgressCircle {
-////                    width: parent.width / 2
-////                    height: parent.height / 2
-////                    anchors.centerIn: parent
-////                    value: lastFile.progress
-////                }
-//            }
         }
     }
-
+    Image {
+        visible: parent.fileName !== ''
+        source: parent.isVideo ? 'image://theme/icon-m-play' : 'image://theme/icon-m-image'
+        width: parent.width / 3
+        height: width
+        anchors.centerIn: parent
+    }
 }

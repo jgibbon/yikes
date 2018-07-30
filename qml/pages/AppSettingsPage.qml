@@ -47,6 +47,18 @@ Page {
                 }
             }
 
+            SectionHeader {
+                text: qsTr('Main Page')
+            }
+            TextSwitch {
+                text: qsTr('Automatically display latest thumbnail')
+                description: qsTr('Loading previews strains the network quite a bit and reduces battery life.')
+                checked: options.autoLoadLatestThumbnail
+                onClicked: {
+                    options.autoLoadLatestThumbnail = checked
+                }
+            }
+
 
         }
     }

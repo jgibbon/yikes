@@ -48,6 +48,7 @@ Item {
         property int startX: 0
         property int startY: 0
         anchors.fill: parent
+
         onPressed: {
             startX= mouse.x
             startY= mouse.y
@@ -158,7 +159,7 @@ Item {
 
             size: Theme.itemSizeMedium
             onClicked: pageStack.push(Qt.resolvedUrl("../pages/CameraFilesPage.qml"))
-
+            showPreview: options.autoLoadLatestThumbnail
         }
     }
 

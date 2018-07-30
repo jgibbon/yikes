@@ -18,4 +18,7 @@ PersistentObject {
     property bool useViewFinder: true
     property bool useGrid: true
 
+    //main View
+    property bool autoLoadLatestThumbnail: false
+
 }

@@ -35,6 +35,18 @@
         <source>Show Grid</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Main Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically display latest thumbnail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading previews strains the network quite a bit and reduces battery life.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CameraFilesPage</name>
