@@ -46,6 +46,15 @@ Page {
                     options.useGrid = checked
                 }
             }
+            TextSwitch {
+                opacity: options.useViewFinder ? 1 : 0.5
+                text: qsTr('Disconnect Viewfinder in background')
+                description: qsTr('Disconnecting when the Main Page isn\'t visible helps battery life.')
+                checked: options.disconnectViewFinderInBackground
+                onClicked: {
+                    options.disconnectViewFinderInBackground = checked
+                }
+            }
 
             SectionHeader {
                 text: qsTr('Main Page')

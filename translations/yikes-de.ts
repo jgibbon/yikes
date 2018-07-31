@@ -47,6 +47,14 @@
         <source>Loading previews strains the network quite a bit and reduces battery life.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Disconnect Viewfinder in background</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disconnecting when the Main Page isn&apos;t visible helps battery life.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CameraFilesPage</name>

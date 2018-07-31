@@ -16,6 +16,7 @@ PersistentObject {
 
     //view finder (stream) options
     property bool useViewFinder: true
+    property bool disconnectViewFinderInBackground: true
     property bool useGrid: true
 
     //main View

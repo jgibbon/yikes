@@ -310,7 +310,7 @@ Item {
         id:viewFinderTimer
         onTriggered: {
             if(options.useViewFinder) {
-                api.cmd('startViewFinder', null, function(){});
+//                api.cmd('startViewFinder', null, function(){});
             }
             api.cmd('getFileList', '100MEDIA/', function(){});
         }

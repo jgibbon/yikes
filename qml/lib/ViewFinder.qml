@@ -5,14 +5,16 @@ import Sailfish.Silica 1.0
 VideoOutput {
     id: viewFinder
     property bool useGrid: options.useGrid
-    property bool useViewFinder: options.useViewFinder
+    property bool useViewFinder: api.connected && options.useViewFinder &&
+                                 !(options.disconnectViewFinderInBackground && (page.status !== PageStatus.Active || Qt.application.state !== Qt.ApplicationActive))
     visible: useViewFinder
     onUseViewFinderChanged: {
+        console.log('usevf changed', useViewFinder, 'page inactive',  page.status !== PageStatus.Active, 'app inactive', Qt.application.state !== Qt.ApplicationActive )
         if(!useViewFinder) {
-            api.cmd('stopViewFinder', null, function(){});
+            api.cmd('stopViewFinder');
         } else {
 
-            api.cmd('startViewFinder', null, function(){});
+            api.cmd('startViewFinder');
         }
     }
 
@@ -24,14 +26,7 @@ VideoOutput {
     property real parentWidth: parent.width
     onParentWidthChanged: setWidth()
 
-//    Behavior on width { PropertyAnimation {} }
-//    Behavior on height { PropertyAnimation {} }
-//    PropertyAnimation {
-//        id: widthAnimation
-//        target: viewFinder
-//        property: 'width'
-//        duration: 500
-//    }
+
     Item {
         id: isRecordingItem
         opacity: api.isrecordingvideo?1:0
