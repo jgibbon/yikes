@@ -1,8 +1,29 @@
 import QtQuick 2.0
 import io.thp.pyotherside 1.5
 
+import Nemo.Notifications 1.0
+
 Item {
     id: api
+    property var cameraOverrides: ({
+                                    'YI Discovery Action Camera': function(){
+                                        api.settingsOptions.rec_mode = {
+                                            permission:'settable',
+                                            param:'rec_mode',
+                                            options:['record', 'record_timelapse', 'record_loop', 'record_photo', 'record_slow_motion']
+                                        };
+
+                                        api.settingsOptions.capture_mode = {
+                                            permission:'settable',
+                                            param:'capture_mode',
+
+                                            options:['precise quality', 'precise quality cont.', 'burst quality', 'precise self quality']
+
+                                        };
+
+                                        api.httpDownloadBase = 'http://192.168.42.1/';
+                                    }
+                                   })
     property bool loaded: false //python loaded
     property bool connected: false //cam connected
     property alias connectionRetries: reconnectTimer.retries
@@ -11,12 +32,14 @@ Item {
     property var settingsOptions: ({}) //valid options for settings
     property var fileList: ({})
     property string streamUrl:''
+    property string httpDownloadBase: 'http://192.168.42.1/DCIM/100MEDIA/'
 
     property bool vfstarted: false //viewfinder / stream started
     property bool modeIsVideo: true //false: photo mode
 
     property int battery: -1 //percentage
     property int adapterStatus: -1 //no way to query? waiting for events… 1-> charging
+
     /*
       subMode: empty for normal photo/video, else:
         Photo:
@@ -58,6 +81,17 @@ Item {
         } else {
             cmd('capturePhoto');
         }
+    }
+    function downloadFiles(urls) {
+        if(typeof urls !== 'object') {
+            urls = [urls];
+        }
+
+        for(var i=0; i<urls.length; i++){
+            console.log('adding download ', urls[i]);
+            pyscript.call('download.add', [urls[i]]);
+        }
+        pyscript.call('download.start');
     }
 
     Python {
@@ -132,6 +166,9 @@ Item {
             })
             setHandler('callback_getSettings', function(commandName, result){
                 api.settings = result;
+                if(api.cameraOverrides[result.product_name]) {
+                    api.cameraOverrides[result.product_name]();
+                }
             });
             setHandler('callback_setRawSetting', function(commandName, result){
                 api.cmd('getSettings');//not all settings get notified :(
@@ -171,6 +208,7 @@ Item {
                     previewVideo: fileName,
                     previewImage: '',
                     rawImage:'',
+                    rawBytes:0,
                     bytes: parseInt(values[0]),
                     date: new Date(values[1]),
                     isVideo: fileName.toLowerCase().indexOf('.mp4') > -1
@@ -202,6 +240,7 @@ Item {
                         tempObj[lowercaseFileName].previewVideo = tempObj[lowercaseFileName].previewVideo || ''
                         tempObj[lowercaseFileName].previewImage = tempObj[lowercaseFileName].previewImage || ''
                         tempObj[lowercaseFileName].rawImage = tempObj[lowercaseFileName].rawImage || ''
+                        tempObj[lowercaseFileName].rawBytes = tempObj[lowercaseFileName].rawBytes || 0
                         console.log('real entry', lowercaseFileName)
                     } else {
                         keyFileName = lowercaseFileName
@@ -219,6 +258,7 @@ Item {
                             tempObj[keyFileName].previewImage = formatted.fileName
                         } else if(isRaw) {
                             tempObj[keyFileName].rawImage = formatted.fileName
+                            tempObj[keyFileName].rawBytes = formatted.bytes
                         }
                     }
                 }
@@ -241,11 +281,27 @@ Item {
                     api.streamUrl = url
                 }
             });
+            setHandler('downloadstate', function(queuesize, percent, progress_size, speed, duration){
+//                console.log('downloading: ', queuesize, 'files remaining', percent,'%', progress_size, speed, duration)
+                downloadNotification.previewSummary = qsTr('Getting %L1 File(s) from Camera', 'notification: make it short').arg(queuesize + 1)
+                downloadNotification.summary = downloadNotification.previewSummary
+                downloadNotification.previewBody = qsTr('%1%, %L2kB/s','50%, 300kB/s').arg(percent).arg(speed)
+                downloadNotification.body = downloadNotification.previewBody
+                downloadNotification.publish()
+            })
+            setHandler('downloaddone', function(){
+                console.log('FILE DONE')
+                downloadNotification.close()
+            })
 
 
 
             importModule('yi', function () {
                 api.loaded = true;
+            });
+            importModule('download', function () {
+//                console.log('setting download dir', options.downloadPath)
+                pyscript.call('download.setdownloaddir', [options.downloadPath])
             });
         }
 
@@ -257,6 +313,13 @@ Item {
             console.log('Python failure: ' + traceback);
         }
 
+    }
+
+    Connections {
+        target: options
+        onDownloadPathChanged: {
+            pyscript.call('download.setdownloaddir', [options.downloadPath])
+        }
     }
     onLoadedChanged: {
         pyscript.call('yi.connect'); //if successful, it's connected
@@ -324,5 +387,20 @@ Item {
             console.log('stopping viewfinder')
             api.cmd('stopViewFinder');
         }
+    }
+    Notification {
+        replacesId: 1
+        id: downloadNotification
+        appIcon: '/usr/share/icons/hicolor/86x86/apps/yikes.png'//Qt.resolvedUrl("../images/app-icon-fg.svg")
+        appName: 'yikes'
+//        category: 'x-jolla.lipstick.connectionwlan'
+        summary: 'summary'
+        previewSummary: 'previewSummary'
+        body: 'body'
+        previewBody: 'previewBody'
+        itemCount: 1
+        maxContentLines: 3
+        origin: 'origin'
+
     }
 }

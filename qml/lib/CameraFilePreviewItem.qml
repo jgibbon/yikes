@@ -11,9 +11,15 @@ MouseArea {
     property int size: Theme.itemSizeMedium
     property bool showPreview: true
     property bool fillImage: true
+    property bool showTypeIcon: true
+    property bool videoPlayable: false
+    property Video videoElement
     width: size
     height: size
 
+    onClicked: {
+
+    }
 
     Loader {
         sourceComponent: fileName!== '' && showPreview ?
@@ -28,6 +34,8 @@ MouseArea {
             width: root.width
             height: root.height
             Rectangle {
+                clip: true
+                radius: root.showPreview ? 0 : width / 2
                 visible: root.fileName !== ''
                 anchors.fill: parent
                 color: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity)
@@ -58,7 +66,7 @@ MouseArea {
                 height: root.height
                 property string src: previewImage || fileName
                 anchors.centerIn: parent
-                source: 'http://192.168.42.1/DCIM/100MEDIA/'+src
+                source: api.httpDownloadBase+src
                 sourceSize.width: width
                 sourceSize.height: height
                 fillMode: root.fillImage ? Image.PreserveAspectCrop : Image.PreserveAspectFit
@@ -72,22 +80,25 @@ MouseArea {
             width: root.width
             height: root.height
             Video {
-                source: 'http://192.168.42.1/DCIM/100MEDIA/'+previewVideo
+                property bool hasAlreadyPlayed: false //we only get the first image on playback
+                source: api.httpDownloadBase+previewVideo
                 autoLoad: true
                 autoPlay: true
                 anchors.fill: parent
-                onBufferProgressChanged: {
-                }
                 onPlaybackStateChanged: {
-                    if(playbackState === MediaPlayer.PlayingState) {
+                    if(!root.videoPlayable && !hasAlreadyPlayed && playbackState === MediaPlayer.PlayingState) {
+                        hasAlreadyPlayed = true
                         pause();
                     }
+                }
+                Component.onCompleted: {
+                    root.videoElement = this;
                 }
             }
         }
     }
     Image {
-        visible: parent.fileName !== ''
+        visible: parent.showTypeIcon && parent.fileName !== ''
         source: parent.isVideo ? 'image://theme/icon-m-play' : 'image://theme/icon-m-image'
         width: parent.width / 3
         height: width

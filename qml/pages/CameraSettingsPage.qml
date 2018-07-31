@@ -62,7 +62,7 @@ Page {
                 value: currentValue
                 description: readableString !== key ? readableString : ''
                 property bool isSettable: {
-                    if(api.settingsOptions[key] && api.settingsOptions[key].permission === 'settable' && api.settingsOptions[key].options.length > 1) {
+                    if(api.settingsOptions[key] && api.settingsOptions[key].permission === 'settable' && api.settingsOptions[key].options && api.settingsOptions[key].options.length > 1) {
                         return true
                     }
                     return false

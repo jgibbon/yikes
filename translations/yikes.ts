@@ -57,9 +57,30 @@
     </message>
 </context>
 <context>
+    <name>CameraFilesDetailPage</name>
+    <message>
+        <source>Download %1</source>
+        <comment>Download XYZ.jpg</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download DNG + JPG</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download %1</source>
+        <comment>Download RAW XYZ.dng</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CameraFilesPage</name>
     <message>
         <source>Camera fileList</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download all files</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -536,6 +557,19 @@
     <name>ViewFinder</name>
     <message>
         <source>Camera Viewport is not available while recording.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>YIapi</name>
+    <message>
+        <source>Getting %L1 File(s) from Camera</source>
+        <comment>notification: make it short</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1%, %L2kB/s</source>
+        <comment>50%, 300kB/s</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

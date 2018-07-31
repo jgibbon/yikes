@@ -11,6 +11,29 @@ Page {
 
     SilicaFlickable {
         anchors.fill: parent
+
+        PullDownMenu {
+
+            MenuItem {
+                visible: fileListModel.count > 0
+                text: qsTr('Download all files')
+                onClicked: {
+                    var len = fileListModel.count;
+                    var tmp;
+                    var urls = [];
+                    for(var i=0;i<len;i++) {
+                        tmp = fileListModel.get(i);
+                        console.log(i,JSON.stringify(tmp))
+                        if(tmp.rawImage !== '') {
+                            urls.push(api.httpDownloadBase+tmp.rawImage);
+                        }
+                        urls.push(api.httpDownloadBase+tmp.fileName)
+                    }
+                    api.downloadFiles(urls);
+                }
+            }
+        }
+
         PageHeader {
             id: pageHeader
             title: qsTr('Camera fileList')
@@ -61,6 +84,7 @@ Page {
                     previewVideo: parent._previewVideo
                     previewImage: parent._previewImage
                     fileName: parent._fileName
+                    showTypeIcon: isVideo
 
                     Component.onCompleted: {
                         console.log(fileName)

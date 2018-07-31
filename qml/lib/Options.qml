@@ -1,5 +1,8 @@
 import QtQuick 2.0
 
+import Sailfish.Silica 1.0
+
+
 PersistentObject {
     id: options
     objectName: "options"
@@ -21,5 +24,6 @@ PersistentObject {
 
     //main View
     property bool autoLoadLatestThumbnail: false
-
+    //downloads
+    property string downloadPath: StandardPaths.pictures
 }
