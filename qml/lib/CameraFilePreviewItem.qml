@@ -9,7 +9,8 @@ MouseArea {
     property string previewImage
     property string fileName
     property int size: Theme.itemSizeMedium
-    property bool showPreview:true
+    property bool showPreview: true
+    property bool fillImage: true
     width: size
     height: size
 
@@ -24,8 +25,8 @@ MouseArea {
     Component {
         id: emptyComponent
         Item {
-            width: root.size
-            height: root.size
+            width: root.width
+            height: root.height
             Rectangle {
                 visible: root.fileName !== ''
                 anchors.fill: parent
@@ -37,8 +38,8 @@ MouseArea {
     Component {
         id: imageComponent
         Item {
-            width: root.size
-            height: root.size
+            width: root.width
+            height: root.height
             Rectangle {
                 opacity: lastFile.progress !== 1.0
                 anchors.fill: parent
@@ -53,13 +54,14 @@ MouseArea {
 
             Image {
                 id: lastFile
-                width: root.size
-                height: root.size
+                width: root.width
+                height: root.height
                 property string src: previewImage || fileName
                 anchors.centerIn: parent
                 source: 'http://192.168.42.1/DCIM/100MEDIA/'+src
                 sourceSize.width: width
                 sourceSize.height: height
+                fillMode: root.fillImage ? Image.PreserveAspectCrop : Image.PreserveAspectFit
             }
 
         }
@@ -67,8 +69,8 @@ MouseArea {
     Component {
         id: videoComponent
         Item {
-            width: root.size
-            height: root.size
+            width: root.width
+            height: root.height
             Video {
                 source: 'http://192.168.42.1/DCIM/100MEDIA/'+previewVideo
                 autoLoad: true

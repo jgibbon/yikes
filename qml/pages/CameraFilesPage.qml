@@ -7,6 +7,8 @@ Page {
     id: page
 
     allowedOrientations: Orientation.All
+    property bool showDetail: false
+
     SilicaFlickable {
         anchors.fill: parent
         PageHeader {
@@ -62,13 +64,22 @@ Page {
 
                     Component.onCompleted: {
                         console.log(fileName)
-    //                    isVideo= data.isVideo
-    //                    previewVideo= data.previewVideo
-    //                    previewImage= data.previewImage
-    //                    fileName= data.fileName
+                        //                    isVideo= data.isVideo
+                        //                    previewVideo= data.previewVideo
+                        //                    previewImage= data.previewImage
+                        //                    fileName= data.fileName
                     }
-            }
+                    onClicked: {
+                        console.log('clicked', index)
+
+                        onClicked: pageStack.push(
+                                       Qt.resolvedUrl("../pages/CameraFilesDetailPage.qml"),
+                                       {fileListModel:fileListModel, startIndex:index})
+
+                    }
+                }
             }
         }
+
     }
 }
