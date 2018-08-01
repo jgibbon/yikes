@@ -108,17 +108,43 @@ Item {
     Item {
         id: cameraSubModeSelectArea
         width: Theme.itemSizeSmall
-        height: parent.height
+//        height: parent.height
         anchors {
             top: parent.top
             left: parent.left
+            bottom: parent.bottom
             margins: Theme.paddingMedium
         }
-
-        CameraModeSubSwitcher {
-            id: cameraModeSubSwitcher
-            anchors.centerIn: parent
+        //hardcoded values for discovery camera
+        Loader {
+            id:subSwitcherLoader
+            anchors.fill: parent
+            states: [
+                State {
+                    name: "Discovery"
+                    when: api.settings.product_name === 'YI Discovery Action Camera'
+                    PropertyChanges {
+                        target: subSwitcherLoader
+                        sourceComponent: discoverySubSwitcher
+                    }
+                }
+            ]
+            sourceComponent: standardSubSwitcher
         }
+
+        Component {
+            id: standardSubSwitcher
+            CameraModeSubSwitcher {
+                anchors.centerIn: parent
+            }
+        }
+        Component {
+            id: discoverySubSwitcher
+            CameraModeSubSwitcherDiscovery {
+                anchors.centerIn: parent
+            }
+        }
+
     }
     Item {
         id: shutterArea

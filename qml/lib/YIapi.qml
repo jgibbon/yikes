@@ -2,24 +2,36 @@ import QtQuick 2.0
 import io.thp.pyotherside 1.5
 
 import Nemo.Notifications 1.0
+/*
+TODO: read recording status on first getSettings:
+    - precise_cont_capturing
+        -
+    - precise_self_running (timer)
+        - precise_self_remain_time
+    -
 
+    read sd card status?
+        - sd_card_status "insert"
+        - sdcard_need_format "no-need"
+
+*/
 Item {
     id: api
     property var cameraOverrides: ({
                                     'YI Discovery Action Camera': function(){
-                                        api.settingsOptions.rec_mode = {
-                                            permission:'settable',
-                                            param:'rec_mode',
-                                            options:['record', 'record_timelapse', 'record_loop', 'record_photo', 'record_slow_motion']
-                                        };
+//                                        api.settingsOptions.rec_mode = {
+//                                            permission:'settable',
+//                                            param:'rec_mode',
+//                                            options:['record', 'record_timelapse', 'record_loop', 'record_photo', 'record_slow_motion']
+//                                        };
 
-                                        api.settingsOptions.capture_mode = {
-                                            permission:'settable',
-                                            param:'capture_mode',
+//                                        api.settingsOptions.capture_mode = {
+//                                            permission:'settable',
+//                                            param:'capture_mode',
 
-                                            options:['precise quality', 'precise quality cont.', 'burst quality', 'precise self quality']
+//                                            options:['precise quality', 'precise quality cont.', 'burst quality', 'precise self quality']
 
-                                        };
+//                                        };
 
                                         api.httpDownloadBase = 'http://192.168.42.1/';
                                     }
@@ -30,6 +42,24 @@ Item {
 
     property var settings: ({}) //camera settings
     property var settingsOptions: ({}) //valid options for settings
+//    property var settingsDependencies: ({ //have to be 'on'; TODO: use
+//                                            warp_enable:'dewarp_support_status',
+//                                            eis:'eis_support_status',
+//                                            photo_file_type: 'photo_file_type_settable',
+//                                            precise_cont_poweroff:'precise_cont_poweroff_settable',
+//                                            sound_effect: 'sound_effect_support',
+//                                            photo_stamp: 'stamp_enable',
+//                                            video_stamp: 'stamp_enable',
+//                                            auto_low_light: 'support_auto_low_light',
+//                                            photo_flat_color: 'support_flat_color',
+//                                            fov:'support_fov',
+//                                            iq_video_iso:'support_iso',
+//                                            iq_photo_iso:'support_iso',
+//                                            photo_sharpness:'support_sharpness',
+//                                            video_sharpness:'support_sharpness',
+//                                            iq_photo_wb:'support_wb',
+//                                            iq_video_wb:'support_wb'
+//                                        })
     property var fileList: ({})
     property string streamUrl:''
     property string httpDownloadBase: 'http://192.168.42.1/DCIM/100MEDIA/'
@@ -176,7 +206,13 @@ Item {
             setHandler('callback_getSettingOptions', function(commandName, result){
                 var options = result;
                 var oldSettings = api.settingsOptions;
-                oldSettings[result.param] = options
+                if(oldSettings[result.param]) {
+                    oldSettings[result.param].permission = options.permission
+                } else {
+
+                    oldSettings[result.param] = options
+                }
+
                 api.settingsOptions = oldSettings
             });
             setHandler('callback_setCaptureMode', function(){

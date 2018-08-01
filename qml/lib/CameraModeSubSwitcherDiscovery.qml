@@ -1,10 +1,13 @@
+/********************************************
+Simplified variant with hard coded, different
+settings for the YI Discovery Action Camera
+*********************************************/
 import QtQuick 2.2
 
 import Sailfish.Silica 1.0
 Item {
     id: root
     property int itemSize: Theme.itemSizeSmall
-
     CameraModeSwitcher {
         id: photoRoot
         opacity: api.modeIsVideo ? 0:1
@@ -18,45 +21,33 @@ Item {
             NumberAnimation {}
         }
         flow.children: [
-            CameraModeSubSwitcherItem {
+            CameraModeSubSwitcherItem { // normal photo
+                visible: true //hard coded override
                 key: 'capture_mode'
                 value: 'precise quality'
                 source: 'image://theme/icon-m-camera'
             },
-            CameraModeSubSwitcherItem {
+            CameraModeSubSwitcherItem { // timer
+                visible: true //hard coded override
                 key: 'capture_mode'
                 value: 'precise self quality'
                 source: '../images/icon-m-timer-val.svg'
             },
-            CameraModeSubSwitcherItem {
+            CameraModeSubSwitcherItem { // burst
+                visible: true //hard coded override
                 key: 'capture_mode'
                 value: 'burst quality'
                 source: '../images/icon-m-burst.svg'
             },
-            CameraModeSubSwitcherItem {
+            CameraModeSubSwitcherItem { // time lapse
+                visible: true //hard coded override
                 key: 'capture_mode'
                 value: 'precise quality cont.'
                 source: '../images/icon-m-timelapse.svg'
             }
         ]
-        function requestOptions(){
-            if(api.connected) {
-                api.getSettingOptions('capture_mode')
-            }
-        }
     }
 
-    Connections {
-        target: api
-        onConnectedChanged: {
-            photoRoot.requestOptions()
-            videoRoot.requestOptions()
-        }
-    }
-    Component.onCompleted: {
-        photoRoot.requestOptions()
-        videoRoot.requestOptions()
-    }
 
 
     CameraModeSwitcher {
@@ -74,28 +65,33 @@ Item {
         itemSize: root.itemSize
         flow.children: [
 
-            CameraModeSubSwitcherItem {
+            CameraModeSubSwitcherItem { // normal video
+                visible: true //hard coded override
                 key: 'rec_mode'
                 value: 'record'
                 source: 'image://theme/icon-m-video'
             },
 
-            CameraModeSubSwitcherItem {
+            CameraModeSubSwitcherItem { // slow motion
+                visible: true //hard coded override
                 key: 'rec_mode'
                 value: 'record_slow_motion'
                 source: '../images/icon-m-slowmotion.svg'
             },
-            CameraModeSubSwitcherItem {
+            CameraModeSubSwitcherItem { // time lapse video
+                visible: true //hard coded override
                 key: 'rec_mode'
                 value: 'record_timelapse'
                 source: '../images/icon-m-timelapse.svg'
             },
-            CameraModeSubSwitcherItem {
+            CameraModeSubSwitcherItem { // loop video
+                visible: true //hard coded override
                 key: 'rec_mode'
                 value: 'record_loop'
                 source: 'image://theme/icon-m-backup'
             },
-            CameraModeSubSwitcherItem {
+            CameraModeSubSwitcherItem { // video + photo
+                visible: true //hard coded override
                 key: 'rec_mode'
                 value: 'record_photo'
                 source: 'image://theme/icon-m-camera'
@@ -108,13 +104,7 @@ Item {
                     horizontalAlignment: Text.AlignRight
                 }
             }
-
         ]
 
-        function requestOptions(){
-            if(api.connected) {
-                api.getSettingOptions('rec_mode')
-            }
-        }
     }
 }
