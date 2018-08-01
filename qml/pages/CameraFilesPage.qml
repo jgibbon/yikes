@@ -36,7 +36,7 @@ Page {
 
         PageHeader {
             id: pageHeader
-            title: qsTr('Camera fileList')
+            title: qsTr('Media on Camera')
         }
         ListModel {
             id: fileListModel

@@ -9,7 +9,9 @@ Page {
     allowedOrientations: Orientation.All
     SilicaFlickable {
         anchors.fill: parent
+        contentHeight: settingsColumn.height
         Column {
+            id: settingsColumn
             width: parent.width
             spacing: Theme.paddingSmall
             PageHeader {
@@ -69,8 +71,6 @@ Page {
                     options.autoLoadLatestThumbnail = checked
                 }
             }
-
-
         }
     }
 }

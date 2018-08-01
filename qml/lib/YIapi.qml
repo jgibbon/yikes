@@ -301,7 +301,7 @@ Item {
             });
             importModule('download', function () {
 //                console.log('setting download dir', options.downloadPath)
-                pyscript.call('download.setdownloaddir', [options.downloadPath])
+                pyscript.call('download.setdownloaddir', [options.downloadPath + '/Yi'])
             });
         }
 
@@ -318,7 +318,7 @@ Item {
     Connections {
         target: options
         onDownloadPathChanged: {
-            pyscript.call('download.setdownloaddir', [options.downloadPath])
+            pyscript.call('download.setdownloaddir', [options.downloadPath + '/Yi'])
         }
     }
     onLoadedChanged: {

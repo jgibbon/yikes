@@ -76,11 +76,11 @@
 <context>
     <name>CameraFilesPage</name>
     <message>
-        <source>Camera fileList</source>
+        <source>Download all files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Download all files</source>
+        <source>Media on Camera</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
