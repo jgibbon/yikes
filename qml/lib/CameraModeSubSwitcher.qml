@@ -96,7 +96,7 @@ Item {
                     color: Theme.primaryColor
                     anchors.left: parent.left
                     anchors.top: parent.top
-                    width: parent.width / 6
+                    width: parent.width / 3
                     horizontalAlignment: Text.AlignRight
                 }
             }
