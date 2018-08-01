@@ -5,6 +5,8 @@ import '../lib'
 
 Page {
     id: page
+
+    allowedOrientations: Orientation.All
     SilicaFlickable {
         anchors.fill: parent
         Column {
