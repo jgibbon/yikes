@@ -493,8 +493,24 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <source>My Cover</source>
-        <translation>Mein Cover</translation>
+        <source>Not Connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Photo Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(recording)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
