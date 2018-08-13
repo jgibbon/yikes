@@ -53,6 +53,8 @@ def reportprogress(count, block_size, total_size):
 
 def download(url):
     dst_file = os.path.join(_downloaddirectory, get_name(url))
+
+    os.makedirs(os.path.dirname(dst_file), exist_ok=True)
     # dst_file = get_name_free(os.path.join(_downloaddirectory, get_name(url)))
     if os.path.exists(dst_file):
         print('file exists', dst_file)
