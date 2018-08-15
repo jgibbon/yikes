@@ -19,6 +19,15 @@ Other models may or may not work and are generally untested.
  - Media preview & download (4K + Discovery)
  - List (4K + Discovery) and edit (4k, Discovery only for some settings) in-camera settings.
  
+## Installation
+### from source
+You may clone this repository, open it in the Sailfish OS SDK and deploy it to your device. Keep in mind that you have to pull the python API, as well:
+```
+git clone --recurse-submodules https://github.com/jgibbon/yikes.git
+```
+### packaged
+yikes is not ready for general use, yet. For now you can find builds that may or may not be current on [Nokius' OBS repository](http://repo.merproject.org/obs/home:/Nokius:/sfos-playground/sailfish_latest_armv7hl/noarch/). Other release channels may follow.
+
 ## Acknowledgements
 This is a QML/Python application, using the fabulous [PyOtherside](https://github.com/thp/pyotherside) for Python/Qt bindings.
  

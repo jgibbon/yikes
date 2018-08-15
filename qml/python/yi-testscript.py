@@ -8,7 +8,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 
-sys.path.append(os.path.abspath('./Yi4kAPI'))
+sys.path.append(os.path.abspath('./YiAPI'))
 
 import Yi4kAPI
 from Yi4kAPI import *

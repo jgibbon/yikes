@@ -1,0 +1,3 @@
+[submodule "qml/python/YiAPI"]
+	path = qml/python/YiAPI
+	url = https://github.com/jgibbon/YiAPI.git
