@@ -2,6 +2,33 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>AboutPage</name>
+    <message>
+        <source>About yikes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yikes is an open source python/qml app to control some basic functionality of Yi Action Cameras via wifi. But if you can read this, you may already know that.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It is not an official product from or in any way related to Yi Technology.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>What is yikes?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Can I help?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Of course! You Rcan help reporting bugs, translating or even debugging to make more camera models at least partially work on GitHub. Or you might buy me a coffee, but there should be better things to spend your money on.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AppSettingsPage</name>
     <message>
         <source>Application Settings</source>
@@ -53,6 +80,11 @@
     </message>
     <message>
         <source>Disconnecting when the Main Page isn&apos;t visible helps battery life.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About</source>
+        <comment>pulley menu entry</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
