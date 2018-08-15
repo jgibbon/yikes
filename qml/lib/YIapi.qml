@@ -319,7 +319,7 @@ Item {
             });
             setHandler('downloadstate', function(queuesize, percent, progress_size, speed, duration){
 //                console.log('downloading: ', queuesize, 'files remaining', percent,'%', progress_size, speed, duration)
-                downloadNotification.previewSummary = qsTr('Getting %L1 File(s) from Camera', 'notification: make it short').arg(queuesize + 1)
+                downloadNotification.previewSummary = qsTr('Getting %L1 File(s) from Camera', 'notification: make it short', queuesize + 1).arg(queuesize + 1)
                 downloadNotification.summary = downloadNotification.previewSummary
                 downloadNotification.previewBody = qsTr('%1%, %L2kB/s','50%, 300kB/s').arg(percent).arg(speed)
                 downloadNotification.body = downloadNotification.previewBody

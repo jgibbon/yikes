@@ -24,7 +24,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Of course! You Rcan help reporting bugs, translating or even debugging to make more camera models at least partially work on GitHub. Or you might buy me a coffee, but there should be better things to spend your money on.</source>
+        <source>Of course! You can help reporting bugs, translating or even debugging to make more camera models at least partially work on GitHub. Or you might buy me a coffee, but there should be better things to spend your money on.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -595,13 +595,6 @@
     </message>
 </context>
 <context>
-    <name>SecondPage</name>
-    <message>
-        <source>Show Page 2</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>ViewFinder</name>
     <message>
         <source>Camera Viewport is not available while recording.</source>
@@ -610,10 +603,12 @@
 </context>
 <context>
     <name>YIapi</name>
-    <message>
+    <message numerus="yes">
         <source>Getting %L1 File(s) from Camera</source>
         <comment>notification: make it short</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
     </message>
     <message>
         <source>%1%, %L2kB/s</source>

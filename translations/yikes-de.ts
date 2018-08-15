@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="de_DE">
 <context>
     <name>AboutPage</name>
     <message>
         <source>About yikes</source>
-        <translation type="unfinished"></translation>
+        <translation>Über yikes</translation>
     </message>
     <message>
         <source>Yikes is an open source python/qml app to control some basic functionality of Yi Action Cameras via wifi. But if you can read this, you may already know that.</source>
-        <translation type="unfinished"></translation>
+        <translation>Yikes ist eine open source python/qml app, um einige Basisfunktionen von Yi Action Cameras über WLAN zu steuern. Aber wenn du dies lesen kannst, könntest du das bereits wissen.</translation>
     </message>
     <message>
         <source>It is not an official product from or in any way related to Yi Technology.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es ist kein offizielles Produkt von oder in irgendeinerweise zu Yi Technology gehörig. </translation>
     </message>
     <message>
         <source>What is yikes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Was ist yikes?</translation>
     </message>
     <message>
         <source>Can I help?</source>
-        <translation type="unfinished"></translation>
+        <translation>Kann ich helfen?</translation>
     </message>
     <message>
-        <source>Of course! You Rcan help reporting bugs, translating or even debugging to make more camera models at least partially work on GitHub. Or you might buy me a coffee, but there should be better things to spend your money on.</source>
-        <translation type="unfinished"></translation>
+        <source>Of course! You can help reporting bugs, translating or even debugging to make more camera models at least partially work on GitHub. Or you might buy me a coffee, but there should be better things to spend your money on.</source>
+        <translation>Na klar! Du kannst helfen, indem du auf GitHub Fehler meldest, übersetzt oder sogar beim Debugging hilfst, um mehr Kameramodelle zumindest teilweise nutzbar zu machen. Oder du kannst mir einen Kaffee ausgeben, aber es sollte bessere Dinge geben, für die du dein Geld ausgibst. </translation>
     </message>
 </context>
 <context>
@@ -64,28 +64,28 @@
     </message>
     <message>
         <source>Main Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Hauptseite</translation>
     </message>
     <message>
         <source>Automatically display latest thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuelles Vorschaubild automatisch anzeigen</translation>
     </message>
     <message>
         <source>Loading previews strains the network quite a bit and reduces battery life.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorschaubilder zu laden belastet das Netzwerk stark und verringert die Batterieleistung.</translation>
     </message>
     <message>
         <source>Disconnect Viewfinder in background</source>
-        <translation type="unfinished"></translation>
+        <translation>Viewfinder im Hintergrund deaktivieren</translation>
     </message>
     <message>
         <source>Disconnecting when the Main Page isn&apos;t visible helps battery life.</source>
-        <translation type="unfinished"></translation>
+        <translation>Den Viewfinder zu trennen, sobald die Hauptseite nicht angezeigt wird, senkt den Batterieverbrauch.</translation>
     </message>
     <message>
         <source>About</source>
         <comment>pulley menu entry</comment>
-        <translation type="unfinished"></translation>
+        <translation>Über</translation>
     </message>
 </context>
 <context>
@@ -93,27 +93,27 @@
     <message>
         <source>Download %1</source>
         <comment>Download XYZ.jpg</comment>
-        <translation type="unfinished"></translation>
+        <translation>Lade %1 herunter</translation>
     </message>
     <message>
         <source>Download DNG + JPG</source>
-        <translation type="unfinished"></translation>
+        <translation>Lade DNG + JPG herunter</translation>
     </message>
     <message>
         <source>Download %1</source>
         <comment>Download RAW XYZ.dng</comment>
-        <translation type="unfinished"></translation>
+        <translation>Lade %1 herunter</translation>
     </message>
 </context>
 <context>
     <name>CameraFilesPage</name>
     <message>
         <source>Download all files</source>
-        <translation type="unfinished"></translation>
+        <translation>Lade alle Dateien herunter</translation>
     </message>
     <message>
         <source>Media on Camera</source>
-        <translation type="unfinished"></translation>
+        <translation>Medien auf der Kamera</translation>
     </message>
 </context>
 <context>
@@ -171,7 +171,7 @@
     </message>
     <message>
         <source>dev_functions</source>
-        <translation type="unfinished"></translation>
+        <translation>Entwicklerfunktionen</translation>
     </message>
     <message>
         <source>dewarp_support_status</source>
@@ -251,11 +251,11 @@
     </message>
     <message>
         <source>meter_mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Belichtungsmessung</translation>
     </message>
     <message>
         <source>mic_level</source>
-        <translation type="unfinished"></translation>
+        <translation>Mikrofonlevel</translation>
     </message>
     <message>
         <source>photo_file_type</source>
@@ -267,7 +267,7 @@
     </message>
     <message>
         <source>photo_flat_color</source>
-        <translation type="unfinished"></translation>
+        <translation>Fotofarben</translation>
     </message>
     <message>
         <source>photo_quality</source>
@@ -291,23 +291,23 @@
     </message>
     <message>
         <source>precise_cont_capturing</source>
-        <translation type="unfinished"></translation>
+        <translation>Nehme Zeitraffer auf</translation>
     </message>
     <message>
         <source>precise_cont_poweroff</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeitraffer Ausschalten</translation>
     </message>
     <message>
         <source>precise_cont_poweroff_settable</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeitraffer Ausschalten einstellbar</translation>
     </message>
     <message>
         <source>precise_cont_time</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeitrafferzeit</translation>
     </message>
     <message>
         <source>precise_self_remain_time</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeitauslöser Restzeit</translation>
     </message>
     <message>
         <source>precise_self_running</source>
@@ -323,7 +323,7 @@
     </message>
     <message>
         <source>protune</source>
-        <translation type="unfinished"></translation>
+        <translation>Protune</translation>
     </message>
     <message>
         <source>quick_view</source>
@@ -331,7 +331,7 @@
     </message>
     <message>
         <source>rec_audio_support</source>
-        <translation type="unfinished"></translation>
+        <translation>Filmaudio verfügbar</translation>
     </message>
     <message>
         <source>rec_mode</source>
@@ -339,19 +339,19 @@
     </message>
     <message>
         <source>record_photo_time</source>
-        <translation type="unfinished"></translation>
+        <translation>Film+Foto Zeit</translation>
     </message>
     <message>
         <source>restore_bt</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>restore_factory_settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Auf Fabrikeinstellungen zurücksetzen</translation>
     </message>
     <message>
         <source>restore_wifi</source>
-        <translation type="unfinished"></translation>
+        <translation>WLAN zurücksetzen</translation>
     </message>
     <message>
         <source>screen_auto_lock</source>
@@ -443,39 +443,39 @@
     </message>
     <message>
         <source>system_mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Systemmodus</translation>
     </message>
     <message>
         <source>timelapse_photo_shutter</source>
-        <translation type="unfinished"></translation>
+        <translation>Fotozeitraffer Belichtungszeit</translation>
     </message>
     <message>
         <source>timelapse_video</source>
-        <translation type="unfinished"></translation>
+        <translation>Filmzeitraffer</translation>
     </message>
     <message>
         <source>timelapse_video_duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Filmzeitraffer Länge</translation>
     </message>
     <message>
         <source>timelapse_video_resolution</source>
-        <translation type="unfinished"></translation>
+        <translation>Filmzeitraffer Auflösung</translation>
     </message>
     <message>
         <source>video_file_max_size</source>
-        <translation type="unfinished"></translation>
+        <translation>maximale Videogröße</translation>
     </message>
     <message>
         <source>video_flat_color</source>
-        <translation type="unfinished"></translation>
+        <translation>Filmfarben</translation>
     </message>
     <message>
         <source>video_photo_resolution</source>
-        <translation type="unfinished"></translation>
+        <translation>Film+Foto Auflösung</translation>
     </message>
     <message>
         <source>video_quality</source>
-        <translation type="unfinished"></translation>
+        <translation>Videoqualität</translation>
     </message>
     <message>
         <source>video_resolution</source>
@@ -483,142 +483,138 @@
     </message>
     <message>
         <source>video_rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Videorotation</translation>
     </message>
     <message>
         <source>video_sharpness</source>
-        <translation type="unfinished"></translation>
+        <translation>Videoschärfe</translation>
     </message>
     <message>
         <source>video_stamp</source>
-        <translation type="unfinished"></translation>
+        <translation>Videozeitstempel</translation>
     </message>
     <message>
         <source>video_standard</source>
-        <translation type="unfinished"></translation>
+        <translation>Filmstandard</translation>
     </message>
     <message>
         <source>warp_enable</source>
-        <translation type="unfinished"></translation>
+        <translation>Linsenkorrektur</translation>
     </message>
     <message>
         <source>wifi_country</source>
-        <translation type="unfinished"></translation>
+        <translation>WLAN Land</translation>
     </message>
     <message>
         <source>wifi_country_editable</source>
-        <translation type="unfinished"></translation>
+        <translation>WLAN Land editierbar</translation>
     </message>
     <message>
         <source>wifi_mode</source>
-        <translation type="unfinished"></translation>
+        <translation>WLAN Modus</translation>
     </message>
     <message>
         <source>wifi_password</source>
-        <translation type="unfinished"></translation>
+        <translation>WLAN Passwort</translation>
     </message>
     <message>
         <source>wifi_ssid</source>
-        <translation type="unfinished"></translation>
+        <translation>WLAN SSID</translation>
     </message>
 </context>
 <context>
     <name>CoverPage</name>
     <message>
         <source>Not Connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht verbunden</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbunden</translation>
     </message>
     <message>
         <source>Video Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Filmmodus</translation>
     </message>
     <message>
         <source>Photo Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Fotomodus</translation>
     </message>
     <message>
         <source>(recording)</source>
-        <translation type="unfinished"></translation>
+        <translation>(nimmt auf)</translation>
     </message>
 </context>
 <context>
     <name>FirstPage</name>
     <message>
         <source>Camera Settings</source>
-        <translation type="unfinished">Kameraeinstellungen</translation>
+        <translation>Kameraeinstellungen</translation>
     </message>
     <message>
         <source>Application Settings</source>
-        <translation type="unfinished">Programmeinstellungen</translation>
+        <translation>Programmeinstellungen</translation>
     </message>
 </context>
 <context>
     <name>MainpageDisconnected</name>
     <message>
         <source>Connection to Camera lost</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindung zu Kamera verloren</translation>
     </message>
     <message>
         <source>Not connected to Camera</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht mit Kamera verbunden</translation>
     </message>
     <message>
         <source>I am trying to connect right now.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ich versuche gerade, zu verbinden.</translation>
     </message>
     <message>
         <source>The camera&apos;s hot spot name should start with &quot;YDXJ_&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Hot-Spot-Name der Kamera sollte mit &quot;YDXJ_&quot; beginnen.</translation>
     </message>
     <message>
         <source>If you keep seeing this, please make sure:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn du dies länger siehst, prüfe bitte:</translation>
     </message>
     <message>
         <source>That the camera&apos;s wifi is enabled</source>
         <comment>&quot;make sure&quot;…</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dass das WLAN der Kamera aktiviert ist</translation>
     </message>
     <message>
         <source>That this device&apos;s wifi is enabled</source>
         <comment>&quot;make sure&quot;…</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dass WLAN auf diesem Gerät aktiviert ist</translation>
     </message>
     <message>
         <source>That both devices are connected. </source>
         <comment>&quot;make sure&quot;…</comment>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SecondPage</name>
-    <message>
-        <source>Show Page 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Dass beide Geräte verbunden sind.</translation>
     </message>
 </context>
 <context>
     <name>ViewFinder</name>
     <message>
         <source>Camera Viewport is not available while recording.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kamerasucher ist während der Aufnahme nicht verfügbar.</translation>
     </message>
 </context>
 <context>
     <name>YIapi</name>
-    <message>
+    <message numerus="yes">
         <source>Getting %L1 File(s) from Camera</source>
         <comment>notification: make it short</comment>
-        <translation type="unfinished"></translation>
+        <translation>
+            <numerusform>Lade %L1 Datei</numerusform>
+            <numerusform>Lade %L1 Dateien</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1%, %L2kB/s</source>
         <comment>50%, 300kB/s</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1%, %L2kB/s</translation>
     </message>
 </context>
 </TS>

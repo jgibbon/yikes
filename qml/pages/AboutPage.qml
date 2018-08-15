@@ -139,13 +139,13 @@ Page {
                 x: Theme.horizontalPageMargin
                 width: parent.width - Theme.horizontalPageMargin*2
                 onClicked: Qt.openUrlExternally("https://github.com/jgibbon/yikes")
-                text: "GitHub page"
+                text: "GitHub"
             }
             Button {
                 x: Theme.horizontalPageMargin
                 width: parent.width - Theme.horizontalPageMargin*2
                 onClicked: Qt.openUrlExternally("https://www.paypal.me/jgibbon")
-                text: "PayPal page"
+                text: "PayPal"
             }
         }
     }

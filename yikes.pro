@@ -17,7 +17,6 @@ CONFIG += sailfishapp_qml
 DISTFILES += qml/yikes.qml \
     qml/cover/CoverPage.qml \
     qml/pages/FirstPage.qml \
-    qml/pages/SecondPage.qml \
     rpm/yikes.changes.in \
     rpm/yikes.changes.run.in \
     rpm/yikes.spec \
