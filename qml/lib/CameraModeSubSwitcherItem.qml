@@ -14,7 +14,9 @@ Item {
     onVisibleChanged: checkHighlighted()
 
     function checkHighlighted(){
-        parent.checkHighlighted(image) //this won't work, would it?
+        if(page.status === PageStatus.Active) {
+            parent.checkHighlighted(image);
+        }
     }
 
     property var clickedFunc: function() {
@@ -29,5 +31,9 @@ Item {
         onHighlightedChanged: {
             root.checkHighlighted()
         }
+    }
+    Connections {
+        target: page
+        onStatusChanged: root.checkHighlighted()
     }
 }
