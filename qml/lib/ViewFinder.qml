@@ -5,11 +5,11 @@ import Sailfish.Silica 1.0
 VideoOutput {
     id: viewFinder
     property bool useGrid: options.useGrid
-    property bool useViewFinder: api.connected && options.useViewFinder &&
+    property bool useViewFinder: api.connected && options.useViewFinder && api.streamUrl !== '' &&
                                  !(options.disconnectViewFinderInBackground && (page.status !== PageStatus.Active || Qt.application.state !== Qt.ApplicationActive))
     visible: useViewFinder
     onUseViewFinderChanged: {
-        console.log('usevf changed', useViewFinder, 'page inactive',  page.status !== PageStatus.Active, 'app inactive', Qt.application.state !== Qt.ApplicationActive )
+        console.log('usevf changed:', useViewFinder, '| page inactive:',  page.status !== PageStatus.Active, '| app inactive:', Qt.application.state !== Qt.ApplicationActive, '|| url:', api.streamUrl )
         if(!useViewFinder) {
             api.cmd('stopViewFinder');
         } else {

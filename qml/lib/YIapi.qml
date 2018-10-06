@@ -277,7 +277,7 @@ Item {
                         tempObj[lowercaseFileName].previewImage = tempObj[lowercaseFileName].previewImage || ''
                         tempObj[lowercaseFileName].rawImage = tempObj[lowercaseFileName].rawImage || ''
                         tempObj[lowercaseFileName].rawBytes = tempObj[lowercaseFileName].rawBytes || 0
-                        console.log('real entry', lowercaseFileName)
+//                        console.log('real entry', lowercaseFileName)
                     } else {
                         keyFileName = lowercaseFileName
                             .replace('.thm', '.mp4')
@@ -287,7 +287,7 @@ Item {
                         if(!(lowercaseFileName in tempObj)) {
                             tempObj[lowercaseFileName] = {}
                         }
-                        console.log('has stuff',lowercaseFileName, has_thm, hasSEC, hasTHM, isRaw)
+//                        console.log('has stuff',lowercaseFileName, has_thm, hasSEC, hasTHM, isRaw)
                         if(has_thm || hasSEC) {
                             tempObj[keyFileName].previewVideo = formatted.fileName
                         } else if(hasTHM) {
@@ -312,6 +312,7 @@ Item {
 
             });
             setHandler('streamurl', function(url){
+                console.log('STREAM URL');
                 if(url) {
                     api.connected = true
                     api.streamUrl = url
