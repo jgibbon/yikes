@@ -30,6 +30,15 @@ VideoOutput {
     Item {
         id: isRecordingItem
         opacity: api.isrecordingvideo?1:0
+        onOpacityChanged: {
+            if(opacity == 1) {
+                mediaPlayer.pause()
+                viewFinder.opacity = 0.5
+            } else {
+                mediaPlayer.play()
+                viewFinder.opacity = 1
+            }
+        }
 
         anchors.fill: parent
         Rectangle {
