@@ -17,14 +17,23 @@ CONFIG += sailfishapp_qml
 DISTFILES += qml/yikes.qml \
     qml/cover/CoverPage.qml \
     qml/pages/FirstPage.qml \
-    qml/pages/SecondPage.qml \
     rpm/yikes.changes.in \
     rpm/yikes.changes.run.in \
     rpm/yikes.spec \
     rpm/yikes.yaml \
     translations/*.ts \
     yikes.desktop \
-    python/pytest.py
+    python/pytest.py \
+    qml/lib/MainpageDisconnected.qml \
+    qml/lib/MainpageConnected.qml \
+    qml/lib/CameraModeSwitcher.qml \
+    qml/lib/CameraShutterButton.qml \
+    qml/lib/HighlightImage.qml \
+    qml/lib/CameraModeSubSwitcher.qml \
+    qml/lib/CameraModeSubSwitcherItem.qml \
+    qml/pages/CameraFilesDetailPage.qml \
+    qml/lib/CameraModeSubSwitcherDiscovery.qml \
+    qml/pages/AboutPage.qml
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128
 
