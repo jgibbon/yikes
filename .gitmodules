@@ -1,3 +1,4 @@
 [submodule "qml/python/Yi4kAPI"]
 	path = qml/python/Yi4kAPI
 	url = https://github.com/jgibbon/YiAPI.git
+	branch = master
