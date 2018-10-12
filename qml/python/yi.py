@@ -9,8 +9,8 @@ from time import sleep, perf_counter
 
 sys.path.append(os.path.abspath('./YiAPI'))
 
-import Yi4kAPI
-from Yi4kAPI import *
+import YiAPI
+from YiAPI import *
 
 def notificationCB(result):
     print('notificationCB', result);
@@ -22,7 +22,7 @@ def log(entry):
 # wrap camera.cmd to use pyotherside methods later
 def cmd(commandName, arg=None):
     log(['cmd', commandName, arg])
-    result= camera.cmd(getattr(Yi4kAPI, commandName), arg)
+    result= camera.cmd(getattr(YiAPI, commandName), arg)
     if result == -99999: #disconnected
         pyotherside.send("disconnected")
         return None
