@@ -1,10 +1,13 @@
 # yikes
-[yikes](https://github.com/jgibbon/yikes/) is an unofficial, bare-bones Sailfish OS application to interface with Yi Action Cameras.
+ [![yikes-logo](icons/86x86/yikes.png) yikes](https://github.com/jgibbon/yikes/) is an unofficial, bare-bones Sailfish OS application to interface with Yi Action Cameras.
 It is primarily targeted towards the *Yi 4k Action Camera*, but with at least some features working on other models.
 For example, recording Video or Photos with the *Yi Discovery* work, as does downloading media from the camera.
 Other models may or may not work and are generally untested.
 
 yikes is not an official product from or in any way related to Yi Technology.
+
+[![video mode screen shot](https://i.imgur.com/iOF1TFKm.png)](https://i.imgur.com/iOF1TFK.png) 
+[![photo mode screen shot](https://i.imgur.com/1TqqsIZm.png)](https://i.imgur.com/1TqqsIZ.png)
 
 ## Limitations
  - The Yi Action Camera API is not publicly documented, so all features may stop working completely in edge cases
