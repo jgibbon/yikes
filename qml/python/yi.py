@@ -7,7 +7,7 @@ from time import sleep, perf_counter
 
 # logging.basicConfig(level=logging.DEBUG)
 
-sys.path.append(os.path.abspath('./YiAPI'))
+sys.path.append(os.path.abspath('./Yi4kAPI'))
 
 import Yi4kAPI
 from Yi4kAPI import *
