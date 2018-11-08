@@ -8,11 +8,9 @@ MouseArea {
     property alias image: image
     property alias source: image.source
     property bool highlighted: false
-    property color color: Theme.highlightColor
+    property color color: Theme.primaryColor
     property bool useShadow: false
-    property color shadowColor: color
-//    property var onClicked: function(){}
-
+    property color shadowColor: hasBrightThemeBackground ? '#ffffff' : Theme.highlightBackgroundColor
     Item { //shader + shadow on one Component does not work well
         id: container
         anchors.fill: parent
@@ -34,7 +32,7 @@ MouseArea {
                             }
                         "
             }
-            layer.enabled: root.highlighted
+            layer.enabled: true
             layer.samplerName: "source"
         }
     }
@@ -50,7 +48,4 @@ MouseArea {
             color: root.shadowColor
             source: container
         }
-    Component.onCompleted: {
-//        mouseArea.clicked.connect(onClicked)
-    }
 }

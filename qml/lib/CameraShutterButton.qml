@@ -23,7 +23,7 @@ Item {
     ]
     Rectangle {
         anchors.fill: parent
-        color: Theme.rgba(Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity)
+        color: Theme.rgba(hasBrightThemeBackground ? Qt.lighter(Theme.highlightColor, 2.5) : Theme.highlightBackgroundColor, Theme.highlightBackgroundOpacity)
         radius: width / 2
     }
 
@@ -41,6 +41,21 @@ Item {
         Behavior on opacity {
                 NumberAnimation {}
             }
+        layer.effect: ShaderEffect {
+            property color color: Theme.primaryColor
+            fragmentShader: "
+                        varying mediump vec2 qt_TexCoord0;
+                        uniform highp float qt_Opacity;
+                        uniform lowp sampler2D source;
+                        uniform highp vec4 color;
+                        void main() {
+                            highp vec4 pixelColor = texture2D(source, qt_TexCoord0);
+                            gl_FragColor = vec4(mix(pixelColor.rgb/max(pixelColor.a, 0.00390625), color.rgb/max(color.a, 0.00390625), color.a) * pixelColor.a, pixelColor.a) * qt_Opacity;
+                        }
+                    "
+        }
+        layer.enabled: true
+        layer.samplerName: "source"
     }
     Item {
         id: videoImage

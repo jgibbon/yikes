@@ -3,7 +3,7 @@ import Sailfish.Silica 1.0
 import QtGraphicalEffects 1.0
 
 Item {
-    width: img.width * 2.5
+    width: img.width * 2.6
     height: img.height
 //    visible: api.battery > -1
     Item {
@@ -31,6 +31,7 @@ Item {
             id: batteryLabel
             anchors.left: img.right
             anchors.verticalCenter: parent.verticalCenter
+            color: Theme.primaryColor
             text: api.battery + '%'
             font.pixelSize: Theme.fontSizeExtraSmall
         }
@@ -42,7 +43,7 @@ Item {
             verticalOffset: 0
             radius: 2.0
             samples: 2
-            color: Theme.highlightBackgroundColor
+            color:  hasBrightThemeBackground ? Qt.lighter(Theme.highlightColor, 2.5) : Theme.highlightBackgroundColor
             source: shadowContainer
         }
 }

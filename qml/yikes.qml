@@ -37,6 +37,7 @@ ApplicationWindow
 {
     property alias api: pythonAPI
     property alias strings: cameraStrings
+    property bool hasBrightThemeBackground: Theme.colorScheme && Theme.colorScheme === Theme.DarkOnLight
     initialPage: Component { FirstPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: defaultAllowedOrientations
