@@ -17,13 +17,15 @@ yikes is not an official product from or in any way related to Yi Technology.
  - The "Live" mode of newer firmware versions is and will remain unsupported.
 
 ## Features
- - Basic connection to the camera (4K + Discovery)
- - Viewfinder stream (4K only)
- - Start recording video or photos (4K + Discovery)
- - Select sub modes like "Slow Motion" or "Time Lapse" (4K, Discovery is work-in-progress)
- - Media preview & download (4K + Discovery)
- - List (4K + Discovery) and edit (4k, Discovery only for some settings) in-camera settings.
- 
+
+Model | Modelname | Basic connection | Viewfinder stream | taking Photos | recording Videos | Media preview | read Settings | write Settings 
+----- | --------- | ---------------- | ----------------- | ------------- | ---------------- | ------------- | ------------- | --------------
+Xiaomi Yi Action Camera| <img src="https://oss.yitechnology.com/images/actioncamera2/firmware/image_action_camera.png" alt="drawing" width="100"/> | **Needs testing** | **Needs testing** | **Needs testing** |**Needs testing** | **Needs testing** | **Needs testing** | **Needs testing** | 
+YI 4K Action Camera| <img src="https://oss.yitechnology.com/images/actioncamera2/firmware/image_action_camera_4k.png" alt="drawing" width="100"/> | **YES** | **YES** | **YES** | **YES** | **YES** | **YES** | **YES**
+YI 4K+ Action Camera| <img src="https://oss.yitechnology.com/images/actioncamera2/firmware/image_action_camera_4kplus.png" alt="drawing" width="100"/> | **Needs testing** | **Needs testing** | **Needs testing** |**Needs testing** | **Needs testing** | **Needs testing** | **Needs testing** | 
+YI Lite Action Camera| <img src="https://oss.yitechnology.com/images/actioncamera2/firmware/image_yilite_firmware-1.png" alt="drawing" width="100"/> | **Needs testing** | **Needs testing** | **Needs testing** |**Needs testing** | **Needs testing** | **Needs testing** | **Needs testing** | 
+YI Discovery Action Camera| <img src="https://oss.yitechnology.com/images/discovery/J22icon.png" alt="drawing" width="100"/> | **YES** | **NO** | **YES** | **YES** | **YES** | **Needs testing** | **YES**
+
 ## Installation
 ### from source
 You may clone this repository, open it in the Sailfish OS SDK and deploy it to your device. Keep in mind that you have to pull the python API, as well:

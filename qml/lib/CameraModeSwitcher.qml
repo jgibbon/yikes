@@ -38,13 +38,15 @@ Item {
         visible: root.useBackground
         anchors.fill: parent
 
-        color: Theme.rgba(Theme.highlightDimmerColor, Theme.highlightBackgroundOpacity)
+        color: hasBrightThemeBackground ? Qt.lighter(Theme.highlightColor, 2.5) : Theme.rgba(Theme.secondaryHighlightColor, Theme.highlightBackgroundOpacity)
         radius: width
 
     }
     OpacityRampEffect {
         sourceItem: backgroundRect
         direction: root.isHorizontal ? OpacityRamp.TopToBottom : OpacityRamp.LeftToRight
+        offset: 0
+        slope: 1
     }
 
     Rectangle {
