@@ -35,7 +35,8 @@ DISTFILES += qml/yikes.qml \
     qml/pages/AboutPage.qml \
     qml/lib/HighlightImageBase.qml
 
-SAILFISHAPP_ICONS = 86x86 108x108 128x128
+SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
+
 
 # to disable building translations every time, comment out the
 # following CONFIG line
