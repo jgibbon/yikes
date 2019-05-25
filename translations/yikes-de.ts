@@ -87,6 +87,10 @@
         <comment>pulley menu entry</comment>
         <translation>Über</translation>
     </message>
+    <message>
+        <source>Set Camera Date when Connection succeeded</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CameraFilesDetailPage</name>

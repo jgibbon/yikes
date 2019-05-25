@@ -16,6 +16,7 @@ PersistentObject {
         - 'photo'
     */
     property string startCameraMode: 'video'
+    property bool setCameraDateTimeOnConnection: true
 
     //view finder (stream) options
     property bool useViewFinder: true

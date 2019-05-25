@@ -37,6 +37,14 @@ Page {
                     {text: qsTr('Photo'), value: 'photo'},
                 ]
             }
+            TextSwitch {
+                opacity: options.useViewFinder ? 1 : 0.5
+                text: qsTr('Set Camera Date when Connection succeeded')
+                checked: options.setCameraDateTimeOnConnection
+                onClicked: {
+                    options.setCameraDateTimeOnConnection = checked
+                }
+            }
             SectionHeader {
                 text: qsTr('Viewfinder Options')
             }

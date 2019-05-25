@@ -308,7 +308,7 @@ Item {
                 formattedFileList.reverse()
                 api.fileList = formattedFileList
 
-                console.log(commandName, JSON.stringify(formattedFileList, null, 1));
+//                console.log(commandName, JSON.stringify(formattedFileList, null, 1));
 
             });
             setHandler('streamurl', function(url){
@@ -316,6 +316,11 @@ Item {
                 if(url) {
                     api.connected = true
                     api.streamUrl = url
+                    if(options.setCameraDateTimeOnConnection) {
+                        var dateStr = new Date().toLocaleString(Qt.locale("de_DE"), "yyyy-MM-dd HH:mm:ss");
+                        console.log('setting camera dateStr', dateStr);
+                        api.cmd('setDateTime', dateStr);
+                    }
                 }
             });
             setHandler('downloadstate', function(queuesize, percent, progress_size, speed, duration){
