@@ -17,6 +17,8 @@ PersistentObject {
     */
     property string startCameraMode: 'video'
     property bool setCameraDateTimeOnConnection: true
+    property bool amazfishButtonShutterEnabled: false
+    property int amazfishButtonShutterPresses: 1
 
     //view finder (stream) options
     property bool useViewFinder: true

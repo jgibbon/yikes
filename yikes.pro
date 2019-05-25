@@ -33,7 +33,8 @@ DISTFILES += qml/yikes.qml \
     qml/pages/CameraFilesDetailPage.qml \
     qml/lib/CameraModeSubSwitcherDiscovery.qml \
     qml/pages/AboutPage.qml \
-    qml/lib/HighlightImageBase.qml
+    qml/lib/HighlightImageBase.qml \
+    qml/lib/AmazfitButtonTrigger.qml
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
 

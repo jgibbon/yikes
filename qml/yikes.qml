@@ -67,5 +67,14 @@ ApplicationWindow
 
         }
     }
+    AmazfitButtonTrigger {
+        enabled: options.amazfishButtonShutterEnabled
+        onButtonPressed: {
+            if(presses === options.amazfishButtonShutterPresses) {
+                console.log('amazfit button pressed', presses)
+                pythonAPI.shutter()
+            }
+        }
+    }
 }
 
