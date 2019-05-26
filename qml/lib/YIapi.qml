@@ -216,7 +216,7 @@ Item {
                 if(api.cameraOverrides[result.product_name]) {
                     api.cameraOverrides[result.product_name]();
                 }
-                if(api.settings.app_status === 'capture') {
+                if(api.settings.app_status === 'capture' || api.settings.app_status === 'record') {
                     isrecordingvideo = true;
                 }
                 if(api.settings.system_mode === 'record') {
