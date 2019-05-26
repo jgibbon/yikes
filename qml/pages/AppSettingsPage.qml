@@ -28,15 +28,15 @@ Page {
             SectionHeader {
                 text: qsTr('General Options')
             }
-            OptionComboBox {
-                optionname: 'startCameraMode'
-                label: qsTr('Camera Start Mode')
-//                description: qsTr('')
-                jsonData: [
-                    {text: qsTr('Video'), value: 'video'},
-                    {text: qsTr('Photo'), value: 'photo'},
-                ]
-            }
+//            OptionComboBox {
+//                optionname: 'startCameraMode'
+//                label: qsTr('Camera Start Mode')
+////                description: qsTr('')
+//                jsonData: [
+//                    {text: qsTr('Video'), value: 'video'},
+//                    {text: qsTr('Photo'), value: 'photo'},
+//                ]
+//            }
             TextSwitch {
                 text: qsTr('Set Camera Date when Connection succeeded')
                 checked: options.setCameraDateTimeOnConnection
@@ -68,8 +68,8 @@ Page {
                 stepSize: 1
 
                 visible: options.amazfishButtonShutterEnabled
-                // Slider Value: Press Amazfish watch button x times to reset
-                //: Slider Value: Press Amazfish watch button x times to reset
+                // Slider Value: Press Amazfish watch button x times for shutter
+                //: Slider Value: Press Amazfish watch button x times for shutter
                 valueText: qsTr('Press %L1 time', '', value).arg(value)
 //                            label:
                 onValueChanged: {

@@ -39,18 +39,6 @@
         <translation>Allgemeine Einstellungen</translation>
     </message>
     <message>
-        <source>Camera Start Mode</source>
-        <translation>Kamerastartmodus</translation>
-    </message>
-    <message>
-        <source>Video</source>
-        <translation>Film</translation>
-    </message>
-    <message>
-        <source>Photo</source>
-        <translation>Foto</translation>
-    </message>
-    <message>
         <source>Viewfinder Options</source>
         <translation>Kamerasucheroptionen</translation>
     </message>
@@ -103,7 +91,7 @@
     </message>
     <message numerus="yes">
         <source>Press %L1 time</source>
-        <extracomment>Slider Value: Press Amazfish watch button x times to reset</extracomment>
+        <extracomment>Slider Value: Press Amazfish watch button x times for shutter</extracomment>
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>

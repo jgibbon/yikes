@@ -39,18 +39,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Camera Start Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Video</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Photo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Viewfinder Options</source>
         <translation type="unfinished"></translation>
     </message>
@@ -103,7 +91,7 @@
     </message>
     <message numerus="yes">
         <source>Press %L1 time</source>
-        <extracomment>Slider Value: Press Amazfish watch button x times to reset</extracomment>
+        <extracomment>Slider Value: Press Amazfish watch button x times for shutter</extracomment>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
