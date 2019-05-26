@@ -99,7 +99,7 @@ Item {
 
     // convenience methods
     function shutter(){ // on shutter press
-        console.log('RUNNING SHUTTER');
+        console.log('RUNNING SHUTTER modeIsVideo?', modeIsVideo, subMode);
         if(modeIsVideo) {
                         if(!isrecordingvideo) {
                             cmd('startRecording');
@@ -109,7 +109,19 @@ Item {
                             isrecordingvideo = false;
                         }
         } else {
-            cmd('capturePhoto');
+            if(api.settings.capture_mode.indexOf('cont.') > -1) {// time lapse photo:
+                if(!isrecordingvideo) {
+                    console.log('try timelapse photo:', 'capturePhoto', api.settings.capture_mode+';'+api.settings.precise_cont_time)
+                    cmd('capturePhotoSimple')
+                    isrecordingvideo = true;
+                } else { // THIS IS A BAD WORKAROUND (crashes part of the camera, but at least stops the time lapse)
+                    isrecordingvideo = false;
+                    cmd('stopTimelapsePhoto');
+                }
+            } else {
+                cmd('capturePhoto');
+            }
+
         }
     }
     function downloadFiles(urls) {
@@ -168,6 +180,8 @@ Item {
                     adapterStatus = parseInt(result.param)
                 } else if(result.type === 'photo_taken'){
                     api.cmd('getFileList', '100MEDIA/', function(){});
+                } else {
+                    console.log('unknown notification, type:', result.type, '/ param:', result.param);
                 }
 
                 //try to get modeIsVideo & submode
@@ -177,7 +191,9 @@ Item {
                     subMode = result.param;
                 } else if(result.type === 'setting_changed' && result.param === 'capture_mode') {
                     modeIsVideo = false
-                    isrecordingvideo = false
+                    if(api.settings.capture_mode.indexOf('cont.') === -1) {
+                        isrecordingvideo = false
+                    }
                     subMode =result.param
                 }
             })
@@ -191,13 +207,23 @@ Item {
             //general callback, always fired.
             setHandler('callback', function(commandName, result) {
                 api.connected = true
-                //                console.log('api: general callback', commandName, JSON.stringify(result, null, 1));
+                                console.log('api: general callback', commandName, JSON.stringify(result, null, 1));
                                 console.log('api: general callback', commandName);
             })
             setHandler('callback_getSettings', function(commandName, result){
                 api.settings = result;
+
                 if(api.cameraOverrides[result.product_name]) {
                     api.cameraOverrides[result.product_name]();
+                }
+                if(api.settings.app_status === 'capture' || api.settings.app_status === 'record') {
+                    isrecordingvideo = true;
+                }
+                if(api.settings.system_mode === 'record') {
+                    modeIsVideo = true;
+                } else if(api.settings.system_mode === 'capture') {
+
+                    modeIsVideo = false;
                 }
             });
             setHandler('callback_setRawSetting', function(commandName, result){
@@ -216,10 +242,17 @@ Item {
                 api.settingsOptions = oldSettings
             });
             setHandler('callback_setCaptureMode', function(){
-                modeIsVideo = false;
+                    modeIsVideo = false;
+                if(api.settings.capture_mode.indexOf('cont.') === -1) {
+                    isrecordingvideo = false
+                }
+                    subMode =result.param
+
             });
             setHandler('callback_setRecordMode', function(){
                 modeIsVideo = true;
+                subMode = result.param;
+
             });
             setHandler('callback_startViewFinder', function(commandName, result){
                 //                console.log('settings', typeof result)
@@ -308,7 +341,7 @@ Item {
                 formattedFileList.reverse()
                 api.fileList = formattedFileList
 
-                console.log(commandName, JSON.stringify(formattedFileList, null, 1));
+//                console.log(commandName, JSON.stringify(formattedFileList, null, 1));
 
             });
             setHandler('streamurl', function(url){
@@ -316,6 +349,11 @@ Item {
                 if(url) {
                     api.connected = true
                     api.streamUrl = url
+                    if(options.setCameraDateTimeOnConnection) {
+                        var dateStr = new Date().toLocaleString(Qt.locale("de_DE"), "yyyy-MM-dd HH:mm:ss");
+                        console.log('setting camera dateStr', dateStr);
+                        api.cmd('setDateTime', dateStr);
+                    }
                 }
             });
             setHandler('downloadstate', function(queuesize, percent, progress_size, speed, duration){
@@ -368,7 +406,13 @@ Item {
                 api.cmd('getSettings', null, function(){
 
                 pyscript.call('yi.getStreamURL');
-                initializeCameraModeTimer.start()
+//                initializeCameraModeTimer.start();
+
+                viewFinderTimer.start()
+                    // check if the camera is currently recording on start…
+                    if(api.settings.app_status === 'capture') {
+                        // at least time lapse…
+                    }
 
                 });
             });
@@ -391,21 +435,21 @@ Item {
             pyscript.call('yi.connect'); //if successful, it's connected
         }
     }
-    Timer { //didn't work directly, so we're starting it delayed.
-        id:initializeCameraModeTimer
-        onTriggered: {
+//    Timer { //didn't work directly, so we're starting it delayed.
+//        id:initializeCameraModeTimer
+//        onTriggered: {
 
-            var command = ['setRecordMode', api.settings['rec_mode']];
-            if(options.startCameraMode == 'photo') {
-                command = ['setCaptureMode', api.settings['capture_mode']];
-            }
-            api.cmd(command[0], command[1], function(){
-                viewFinderTimer.start()
+//            var command = ['setRecordMode', api.settings['rec_mode']];
+//            if(options.startCameraMode == 'photo') {
+//                command = ['setCaptureMode', api.settings['capture_mode']];
+//            }
+//            api.cmd(command[0], command[1], function(){
+//                viewFinderTimer.start()
 
-            })
-        }
-        interval: 400
-    }
+//            })
+//        }
+//        interval: 400
+//    }
     Timer { //didn't work directly, so we're starting it delayed.
         id:viewFinderTimer
         onTriggered: {

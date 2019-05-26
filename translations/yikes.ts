@@ -39,18 +39,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Camera Start Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Video</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Photo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Viewfinder Options</source>
         <translation type="unfinished"></translation>
     </message>
@@ -86,6 +74,27 @@
         <source>About</source>
         <comment>pulley menu entry</comment>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set Camera Date when Connection succeeded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Amazfish button press</source>
+        <extracomment>TextSwitch: Pressing Amazfish watch button = Shutter button</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Trigger shutter by pressing button on Amazfish-connected device</source>
+        <extracomment>TextSwitch description: Amazfish</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Press %L1 time</source>
+        <extracomment>Slider Value: Press Amazfish watch button x times for shutter</extracomment>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
