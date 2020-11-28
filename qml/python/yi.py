@@ -10,10 +10,10 @@ from time import sleep, perf_counter
 sys.path.append(os.path.abspath('./Yi4kAPI'))
 
 import Yi4kAPI
-from Yi4kAPI import *
+from Yi4kAPI import yiAPI
 
 def notificationCB(result):
-    print('notificationCB', result);
+    print('notificationCB', result)
     pyotherside.send("notification", result)
 
 camera= None
@@ -41,7 +41,7 @@ def getStreamURL():
 
 def connect():
     global camera
-    camera = YiAPI()
+    camera = Yi4kAPI.YiAPI()
     pyotherside.send("connection", camera.rtsp != None)
     # set up callbacks
     for event in ['start_video_record', 'video_record_complete', 'start_photo_capture', 'photo_taken', 'vf_start', 'vf_stop', 'enter_album', 'exit_album', 'battery', 'battery_status', 'adapter', 'adapter_status', 'sdcard_format_done', 'setting_changed']:
