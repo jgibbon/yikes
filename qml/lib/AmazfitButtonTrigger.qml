@@ -13,7 +13,7 @@ Item {
 
                 service: 'uk.co.piggz.amazfish'
                 iface: 'uk.co.piggz.amazfish'
-                path: '/'
+                path: '/application'
 
                 signalsEnabled: true
 
